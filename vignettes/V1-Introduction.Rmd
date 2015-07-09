@@ -24,6 +24,36 @@ Date: 20-22 July, 2015<br />
 The material in this course requires R version 3.2.1 and Bioconductor
 version 3.2
 
+## R 
+
+- http://r-project.org
+- Open-source, statistical programming language; widely used in academia, finance, pharma, . . .
+- Core language, ‘base’ and > 4000 contributed packages
+- Interactive sessions, scripts, packages
+
+## Data types in R 
+
+- Vectors 
+  – logical, integer, numeric, character, . . .  
+  - list() – contains other vectors (recursive)
+  - factor(), NA – statistical concepts  
+  - Can be named – c(Seattle=1, Portland=2)  
+- matrix(), array() – a vector with a ‘dim’ attribute.  
+- data.frame()  
+  – like spreadsheets; list of equal length vectors.
+  - Homogenous types within a column, heterogenous types across columns.  
+- Other classes 
+  – more complicated arrangement of vectors.
+  - Examples  
+     - the value returned by lm(); 
+     - the DNAStringSet class used to hold DNA sequences.
+  - plain, ‘accessor’, ‘generic’, and ‘method’ functions
+- Packages 
+  – base, recommended, contributed.
+
+
+
+
 
 
 ## `sessionInfo()`
