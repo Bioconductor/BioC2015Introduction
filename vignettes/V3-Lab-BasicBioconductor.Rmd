@@ -57,7 +57,7 @@ gr <-
 __Exercise 3__  
 Find the package in Bioconductor which contains annotation databases  
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
-an variable called 'txdb'. Using this object , find the following -   
+a variable called 'txdb'. Using this object , find the following -   
 a) all the genes contained in this assembly and save it in a varible called   
 'ratGenes'.  
 b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
