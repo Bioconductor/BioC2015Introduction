@@ -1,0 +1,99 @@
+---
+title: "1. Introduction to Bioconductor "
+author: "Sonali Arora"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  % \VignetteIndexEntry{1. Introduction to Bioconductor}
+  % \VignetteEngine{knitr::rmarkdown}
+---
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+options(width=100, max.print=1000)
+knitr::opts_chunk$set(
+    eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
+    cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")))
+```
+Author: Sonali Arora (<a
+  href="mailto:sarora@fredhutch.org">sarora@fredhutch.org</a>)<br/ >
+Date: 20-22 July, 2015<br />
+
+The material in this course requires R version 3.2 and Bioconductor
+version 3.1
+
+
+## What is Bioconductor 
+
+Analysis and comprehension of high-throughput genomic data
+
+- Statistical analysis: large data, technological artifacts, designed
+  experiments; rigorous
+- Comprehension: biological context, visualization, reproducibility
+- High-throughput
+    + Sequencing: RNASeq, ChIPSeq, variants, copy number, ...
+    + Microarrays: expression, SNP, ...
+    + Flow cytometry, proteomics, images, ...
+
+Packages, vignettes, work flows
+
+- 'Release' (every six months) and 'devel' branches
+- Choose from 1045 packages.
+     + Discover packages via 
+     [biocViews](http://bioconductor.org/packages/devel/BiocViews.html#___Software)
+     + Each Package has a Package 'landing page' with Title, 
+       author / maintainer, short description, citation, 
+       installation instructions, shields, documentation, download statistics 
+     + All user-visible functions have help pages, most with runnable examples
+     + 'Vignettes' an important feature in Bioconductor -- narrative
+       documents illustrating how to use the package, with integrated code
+
+Helpful Links  
+
+- Documentation
+[Previous Course Material](http://bioconductor.org/help/course-materials/),
+[Workflows](http://bioconductor.org/help/workflows/),
+[Videos](https://www.youtube.com/user/bioconductor),
+[Developers](http://bioconductor.org/developers/) 
+- Ask a question 
+[Support site](https://support.bioconductor.org) 
+- Connect with us 
+[Twitter](https://twitter.com/Bioconductor), 
+[Newsletter](http://bioconductor.org/help/newsletters/2015_July/)
+
+
+## Overall Workflow & How Bioconductor fits in 
+
+A typical workflow consists of the following steps.  
+1. Experimental design  
+    - Keep it simple!  
+    - Replication!  
+    - Avoid or track batch effects  
+2. Wet-lab preparation  
+3. High-throughput sequencing  
+    - Output: FASTQ files of reads and their quality scores  
+4. Alignment  
+    - Many different aligners, some specialized for different purposes  
+    - Output: BAM files of aligned reads  
+5. Summary  
+    - e.g., _count_ of reads overlapping regions of interest (e.g., genes)  
+6. Statistical analysis  
+7. Comprehension  
+
+## `sessionInfo()`
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+
+
+
+
+
+
+
+
+
+  
