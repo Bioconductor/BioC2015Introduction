@@ -31,6 +31,53 @@ version 3.2
 - Core language, ‘base’ and > 4000 contributed packages
 - Interactive sessions, scripts, packages
 
+## Basic Demo 
+
+```{r}
+# R can be used as a calculator 
+0.15 * 100 
+
+# defined simple functions 
+# find the mean of first 10 numbers
+mean(1:10)
+
+# make your analysis reproducible by keeping random generation constant
+set.seed(1)
+
+# generate 10 random numbers for the normal distribution
+rnorm(10) 
+summary(rnorm(100))
+```
+
+## Useful Functions in  base R 
+
+- `dir`, `list.files`   
+   - List files  
+-  `read.table`, `scan`
+   - Read Data into R 
+- `c`, `factor`, `data.frame`, `matrix`
+   - Create vectors , data.frame and matrices to store data
+- `summary`, `table`, `xtabs`
+   - Summarize or cross-tabulate data.
+- `plot`
+   -  Plot data to visualize it 
+- `match`, `%in%`, `which`
+   - find elements of one vector in another.
+- `split`, `cut`
+   - Split or cut vectors.
+- `strsplit`, `grep`, `sub`
+   -  Operate on character vectors. 
+- `lapply`, `sapply`, `mapply`  
+   -  Apply function to elements of lists.
+- `t.test`, `lm`, `anova`
+   - Compare two or several groups.
+- `dist` , `hclust`
+   - Cluster Data
+- `biocLite`, `install.packages`
+   - Install packages in R from online repository
+- `traceback`, `debug`, `browser`
+   - debug errors 
+
 ## Data types in R 
 
 - Vectors 
@@ -49,7 +96,12 @@ version 3.2
      - the DNAStringSet class used to hold DNA sequences.
   - plain, ‘accessor’, ‘generic’, and ‘method’ functions
 - Packages 
-  – base, recommended, contributed.
+  – base, recommended, contributed.  
+
+
+
+
+
 
 
 
