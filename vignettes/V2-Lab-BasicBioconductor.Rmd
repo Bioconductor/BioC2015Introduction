@@ -27,11 +27,11 @@ version 3.1
 
 ## Basic lab for Bioconductor 
 
-_Exercise 1_
+__Exercise 1__  
 How do you download any package from Bioconductor ? More precisely what 
 commands do you use? 
 
-_Exercise 2_ 
+__Exercise 2__  
 Using the given GRanges , do the following   
     + Extract ranges only from chromosome 3  
     + Extract the first five ranges from the GRanges.  
@@ -54,8 +54,8 @@ gr <-
  GC = seq(1, 0, length=33))
 ```  
 
-_Exercise 3_
- Find the package in Bioconductor which contains annotation databases  
+__Exercise 3__  
+Find the package in Bioconductor which contains annotation databases  
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
 an variable called 'txdb'. Using this object , find the following -   
 a) all the genes contained in this assembly and save it in a varible called   
@@ -63,7 +63,7 @@ a) all the genes contained in this assembly and save it in a varible called
 b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
 in 'ratGenes'? what are its chromosome coordinates ?  
 
-_Exercise 4_
+__Exercise 4__  
 Find the package in Bioconductor thats stores the Full genome sequences for  
 Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
 a) Load the package and save it in a object called 'ratSeq'  
@@ -71,11 +71,11 @@ b) what object is this sequence information stored in ?
 c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'  
 d) calculate the GC content from this sequnence.   
 
-_Exercise 5_
+__Exercise 5__   
 In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
 the gene names for each gene ?  
 
-_Exercise 6_
+__Exercise 6__  
 Get the annotation databases from NCBI for Homo sapiens  
 (assembly build GRCh38.80), create a txdb object (similar to what we saw in  
 question 3 above) and get the genes. ( Hint - involves starting from scratch  
@@ -83,16 +83,14 @@ with a GTF file)
 
 ## Solutions
 
-_Answer 1_ 
-
+__Answer 1__  
 If the package we are trying to download is called *GenomeInfoDb* then 
 ```{r load-pkg, eval=FALSE}
 source("http://bioconductor.org/biocLite.R")
 biocLite("GenomeInfoDb")
 ```
 
-_Answer 2_ 
-
+__Answer 2__
 ```{r gr-pkg}
 
 gr <-
@@ -126,7 +124,7 @@ coverage(gr)
 
 ```
 
-_Answer 3_ 
+__Answer 3__  
 ```{r txdb}
 suppressPackageStartupMessages({
     library("TxDb.Rnorvegicus.UCSC.rn5.refGene")
@@ -137,8 +135,7 @@ acsl5 <- ratGenes[which(mcols(ratGenes)$gene_id==94340),]
 acsl5
 ```
 
-_Answer 4_
-
+__Answer 4__  
 ```{r bsgenome}
 suppressPackageStartupMessages({
     library(BSgenome.Rnorvegicus.UCSC.rn5)
@@ -149,8 +146,7 @@ acsl5_sequence <- getSeq(ratSeq, acsl5)
 letterFrequency(acsl5_sequence, "GC", as.prob=TRUE)
 ```
 
-_Answer 5_ 
-
+__Answer 5__   
 ```{r select-rat}
 library("Rattus.norvegicus")
 ratGeneNames <- select(Rattus.norvegicus, ratGenes$gene_id, 
@@ -161,8 +157,7 @@ ratGenes
 ```
 
 
-_Answer 6_
-
+__Answer 6__  
 Steps include   
 a) Getting the GTF file from NCBI for a particular build of Homo  
 sapiens that you're interested in. ( AnnotationHub is a package inside   
