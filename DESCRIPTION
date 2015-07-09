@@ -1,0 +1,23 @@
+Package: BioC2015Introduction
+Type: Package
+Title: Learning R / Bioconductor for Sequence Analysis
+Version: 0.1.6
+Authors@R: c(person("Sonali", "Arora", role=c("aut","cre"), 
+            email="sarora@fredhutch.org"))
+License: Artistic-2.0
+VignetteBuilder: knitr
+Description: This course is directed at beginning and intermediate
+    individuals who would like an introduction to the analysis and
+    comprehension of high-throughput sequence data using R and
+    Bioconductor. We start with learning essential background: an
+    introduction to the R programming language; central concepts for
+    effective use of Bioconductor software; and an overview of
+    high-throughput sequence analysis work flows. Then we emphasize use
+    of Bioconductor for specific tasks. The course combines lectures with
+    extensive hands-on practicals; students are required to bring a
+    laptop with wireless internet access and a modern version of the
+    Chrome or Safari web browser.
+Author: Sonali Arora [aut, cre]
+Maintainer: Sonali Arora <sarora@fredhutch.org>
+Suggests: knitr, BiocStyle, BiocInstaller, 
+    TxDb.Rnorvegicus.UCSC.rn5.refGene, BSgenome.Rnorvegicus.UCSC.rn5,     
