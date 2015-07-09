@@ -87,8 +87,8 @@ summary(rnorm(100))
   - Can be named – c(Seattle=1, Portland=2)  
 - matrix(), array() – a vector with a ‘dim’ attribute.  
 - data.frame()  
-  – like spreadsheets; list of equal length vectors.
-  - Homogenous types within a column, heterogenous types across columns.  
+   - like spreadsheets; list of equal length vectors.
+   - Homogenous types within a column, heterogenous types across columns.  
 - Other classes 
   – more complicated arrangement of vectors.
   - Examples  
