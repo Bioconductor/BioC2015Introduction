@@ -20,8 +20,8 @@ Author: Sonali Arora (<a
   href="mailto:sarora@fredhutch.org">sarora@fredhutch.org</a>)<br/ >
 Date: 20-22 July, 2015<br />
 
-The material in this course requires R version 3.2 and Bioconductor
-version 3.1
+The material in this course requires R version 3.2.1 and Bioconductor
+version 3.2
 
 
 ## What is Bioconductor 
