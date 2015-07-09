@@ -42,15 +42,15 @@ gr <-
  GC = seq(1, 0, length=33))
 ```
 
-a) extract ranges only from chromosome 3 
-b) extract the first five ranges from the GRanges.
-c) extract the score and gc column of the GRanges 
-d) keep only the standard chromosomes (i.e.) from chromosome 1 to 22, x, y,m
-e) change the chromosome naming style i.e. this GRanges contains UCSC style 
-of chromosome names, change them to NCBI style of chromosome names. 
-f) how do you find out the ranges contained in the gaps of this GRanges object?
-g) How do you find out the degree of overlap for all the ranges in a GRanges
-object ? ( Hint: ?coverage)
+a) extract ranges only from chromosome 3  
+b) extract the first five ranges from the GRanges.  
+c) extract the score and gc column of the GRanges  
+d) keep only the standard chromosomes (i.e.) from chromosome 1 to 22, X,Y,M.  
+e) change the chromosome naming style i.e. this GRanges contains UCSC style  
+of chromosome names, change them to NCBI style of chromosome names.   
+f) how do you find out the ranges contained in the gaps of this GRanges object?  
+g) How do you find out the degree of overlap for all the ranges in a GRanges  
+object ? ( Hint: ?coverage)  
 
 3. Find the package in Bioconductor which contains annotation databases 
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in 
