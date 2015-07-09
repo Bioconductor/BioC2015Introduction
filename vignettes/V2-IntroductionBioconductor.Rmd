@@ -66,17 +66,17 @@ Helpful Links
 ## Overall Workflow & How Bioconductor fits in 
 
 A typical workflow consists of the following steps.  
-1. Experimental design  
-2. Wet-lab preparation  
-3. High-throughput sequencing  
-       + Output: FASTQ files of reads and their quality scores  
-4. Alignment
-       + Many different aligners, some specialized for different purposes  
-       + Output: BAM files of aligned reads  
-5. Summary  
-       + e.g., _count_ of reads overlapping regions of interest (e.g., genes)  
-6. Statistical analysis  
-7. Comprehension  
+- Experimental design  
+- Wet-lab preparation  
+- High-throughput sequencing  
+    + Output: FASTQ files of reads and their quality scores  
+- Alignment
+    + Many different aligners, some specialized for different purposes  
+    + Output: BAM files of aligned reads  
+- Summary  
+    + e.g., _count_ of reads overlapping regions of interest (e.g., genes)  
+- Statistical analysis  
+- Comprehension  
 
 ## `sessionInfo()`
 
