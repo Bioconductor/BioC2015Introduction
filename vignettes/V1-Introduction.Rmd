@@ -133,7 +133,7 @@ sapply(iris, mean)
 apply(iris, 1 , mean) #simpler : rowMeans(iris)
 ```
 
-# R as a staisitical computing environment 
+# R as a Statistical Computing Environment 
 
 ```{r}
 # define a vector
