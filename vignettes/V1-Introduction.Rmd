@@ -132,17 +132,35 @@ sapply(iris, mean)
 # find the mean for each row. 
 apply(iris, 1 , mean) #simpler : rowMeans(iris)
 ```
-  
 
+# R as a staisitical computing environment 
 
+```{r}
+# define a vector
+x <- rnorm(1000) 
 
+# vectorized calculation
+y <- x + rnorm(1000, sd=.8) 
 
+# object construction
+df <- data.frame(x=x, y=y)
+ 
+# linear model
+fit <- lm(y ~ x, df)
+```
 
+## Visualizing Data in R 
 
+```{r}
+par(mfrow=c(1,2))
+plot(y ~ x, df, cex.lab=2)
+abline(fit, col="red", lwd=2)
 
-
-
-
+library(ggplot2)
+ggplot(df, aes(x, y)) + 
+   geom_point() +
+   stat_smooth(method="lm")
+```
 
 ## `sessionInfo()`
 
