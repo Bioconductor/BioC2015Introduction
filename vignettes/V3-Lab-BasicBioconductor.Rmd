@@ -33,14 +33,14 @@ commands do you use?
 
 __Exercise 2__  
 Using the given GRanges , do the following   
-    + Extract ranges only from chromosome 3  
-    + Extract the first five ranges from the GRanges.  
-    + Extract the score and gc column of the GRanges  
-    + Keep only the standard chromosomes (i.e.) from chromosome 1 to 22, X,Y,M.  
-    + Change the chromosome naming style i.e. this GRanges contains UCSC style  
+- Extract ranges only from chromosome 3  
+- Extract the first five ranges from the GRanges.  
+- Extract the score and gc column of the GRanges  
+- Keep only the standard chromosomes (i.e.) from chromosome 1 to 22, X,Y,M.  
+- Change the chromosome naming style i.e. this GRanges contains UCSC style  
 of chromosome names, change them to NCBI style of chromosome names.   
-    + How do you find out the ranges contained in the gaps of this GRanges object?  
-    + How do you find out the degree of overlap for all the ranges in a   
+- How do you find out the ranges contained in the gaps of this GRanges object?  
+- How do you find out the degree of overlap for all the ranges in a   
 GRanges object ? ( Hint: ?coverage)  
 
 
