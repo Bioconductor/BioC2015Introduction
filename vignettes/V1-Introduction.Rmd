@@ -98,6 +98,16 @@ summary(rnorm(100))
 - Packages 
   – base, recommended, contributed.  
 
+## Getting help in R 
+
+- ?data.frame  
+- methods(lm), methods(class=class(fit))  
+- ?"plot<tab>"  
+- help(package="Biostrings")  
+- vignette(package="GenomicRanges")  
+- StackOverflow; R-help mailing list
+  
+
 
 
 
