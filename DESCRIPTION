@@ -1,7 +1,7 @@
 Package: BioC2015Introduction
 Type: Package
 Title: Learning R / Bioconductor for Sequence Analysis
-Version: 0.1.6
+Version: 0.0.1
 Authors@R: c(person("Sonali", "Arora", role=c("aut","cre"), 
             email="sarora@fredhutch.org"))
 License: Artistic-2.0
@@ -20,4 +20,5 @@ Description: This course is directed at beginning and intermediate
 Author: Sonali Arora [aut, cre]
 Maintainer: Sonali Arora <sarora@fredhutch.org>
 Suggests: knitr, BiocStyle, BiocInstaller, 
-    TxDb.Rnorvegicus.UCSC.rn5.refGene, BSgenome.Rnorvegicus.UCSC.rn5,     
+    TxDb.Rnorvegicus.UCSC.rn5.refGene, BSgenome.Rnorvegicus.UCSC.rn5,   
+    GenomicFeatures, GenomicRanges, AnnotationHub
