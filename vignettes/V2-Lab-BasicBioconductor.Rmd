@@ -190,8 +190,8 @@ humanGenes <- genes(txdb)
 ```
 
 
-## SessionInfo
+## `sessionInfo()`
 
-```{r}
+```{r sessionInfo}
 sessionInfo()
 ```
