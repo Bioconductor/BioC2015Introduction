@@ -27,10 +27,12 @@ version 3.1
 
 ## Basic lab for Bioconductor 
 
-1. How do you download any package from Bioconductor ? More precisely what 
+_Exercise 1_
+How do you download any package from Bioconductor ? More precisely what 
 commands do you use? 
 
-2. using the given GRanges , do the following   
+_Exercise 2_ 
+Using the given GRanges , do the following   
     + Extract ranges only from chromosome 3  
     + Extract the first five ranges from the GRanges.  
     + Extract the score and gc column of the GRanges  
@@ -50,11 +52,10 @@ gr <-
  strand = c(rep("+", 10), rep("-", 23)),
  score = 1:33,
  GC = seq(1, 0, length=33))
-```
+```  
 
-
-
-3. Find the package in Bioconductor which contains annotation databases  
+_Exercise 3_
+ Find the package in Bioconductor which contains annotation databases  
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
 an variable called 'txdb'. Using this object , find the following -   
 a) all the genes contained in this assembly and save it in a varible called   
@@ -62,17 +63,20 @@ a) all the genes contained in this assembly and save it in a varible called
 b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
 in 'ratGenes'? what are its chromosome coordinates ?  
 
-4. Find the package in Bioconductor thats stores the Full genome sequences for  
+_Exercise 4_
+Find the package in Bioconductor thats stores the Full genome sequences for  
 Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
 a) Load the package and save it in a object called 'ratSeq'  
 b) what object is this sequence information stored in ?  
 c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'  
 d) calculate the GC content from this sequnence.   
 
-5. In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
+_Exercise 5_
+In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
 the gene names for each gene ?  
 
-6. Get the annotation databases from NCBI for Homo sapiens  
+_Exercise 6_
+Get the annotation databases from NCBI for Homo sapiens  
 (assembly build GRCh38.80), create a txdb object (similar to what we saw in  
 question 3 above) and get the genes. ( Hint - involves starting from scratch  
 with a GTF file)
