@@ -30,7 +30,7 @@ version 3.1
 1. How do you download any package from Bioconductor ? More precisely what 
 commands do you use? 
 
-2. using the given GRanges , do the following - 
+2. using the given GRanges , do the following   
 
 ```{r}
 library(GenomicRanges)
@@ -50,7 +50,7 @@ e) change the chromosome naming style i.e. this GRanges contains UCSC style
 of chromosome names, change them to NCBI style of chromosome names.   
 f) how do you find out the ranges contained in the gaps of this GRanges object?  
 g) How do you find out the degree of overlap for all the ranges in a   
-GRanges object ? ( Hint: ?coverage)  
+GRanges object ? ( Hint: ?coverage)   
 
 3. Find the package in Bioconductor which contains annotation databases  
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
@@ -157,15 +157,15 @@ ratGenes
 
 _Answer 6_
 
-Steps include 
-a) Getting the GTF file from NCBI for a particular build of Homo
-sapiens that you're interested in. ( AnnotationHub is a package inside 
-Bioconductor which automatically gets the file for you)
-b) create a txdb object from this GTF file (which is read in as a GRanges)
-c) extract genes from the txdb object as before. 
+Steps include   
+a) Getting the GTF file from NCBI for a particular build of Homo  
+sapiens that you're interested in. ( AnnotationHub is a package inside   
+Bioconductor which automatically gets the file for you)  
+b) create a txdb object from this GTF file (which is read in as a GRanges)  
+c) extract genes from the txdb object as before.   
 
-These steps are beneficial if you cannot find pre-packaged genome annotations
-for your favourite organism as a package inside Bioconductor. 
+These steps are beneficial if you cannot find pre-packaged genome annotations  
+for your favourite organism as a package inside Bioconductor.   
 
 ```{r gtf-to-gr, eval=FALSE}
 
