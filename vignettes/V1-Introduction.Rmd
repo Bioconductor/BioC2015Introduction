@@ -31,24 +31,6 @@ version 3.2
 - Core language, ‘base’ and > 4000 contributed packages
 - Interactive sessions, scripts, packages
 
-## Basic Demo 
-
-```{r}
-# R can be used as a calculator 
-0.15 * 100 
-
-# defined simple functions 
-# find the mean of first 10 numbers
-mean(1:10)
-
-# make your analysis reproducible by keeping random generation constant
-set.seed(1)
-
-# generate 10 random numbers for the normal distribution
-rnorm(10) 
-summary(rnorm(100))
-```
-
 ## Useful Functions in  base R 
 
 - `dir`, `list.files`   
@@ -78,6 +60,16 @@ summary(rnorm(100))
 - `traceback`, `debug`, `browser`
    - debug errors 
 
+
+## Getting help in R 
+
+- ?data.frame  
+- methods(lm), methods(class=class(fit))  
+- ?"plot<tab>"  
+- help(package="Biostrings")  
+- vignette(package="GenomicRanges")  
+- StackOverflow; R-help mailing list
+
 ## Data types in R 
 
 - Vectors 
@@ -98,14 +90,48 @@ summary(rnorm(100))
 - Packages 
   – base, recommended, contributed.  
 
-## Getting help in R 
+## R programming concepts 
 
-- ?data.frame  
-- methods(lm), methods(class=class(fit))  
-- ?"plot<tab>"  
-- help(package="Biostrings")  
-- vignette(package="GenomicRanges")  
-- StackOverflow; R-help mailing list
+ - Functions – built-in (e.g., rnorm()); user-defined
+
+```{r}
+mean(1:10)
+rnorm(1:10)
+summary(rnorm(1:10))
+```
+- Subsetting – logical, numeric, character; 
+
+```{r}
+data(iris) 
+
+# find those rows where petal.width is exactly 0.2
+iris[iris$Petal.Width==0.2,]
+
+# find those rows where sepal.length is less than 4.5
+iris[iris$Sepal.Length < 4.5,]
+
+# find all rows belonging to setosa
+setosa_iris = iris[iris$Species=="setosa",]
+dim(setosa_iris)
+head(setosa_iris)
+```
+
+- Iteration – over vector elements, lapply(), mapply(), apply()
+
+```{r}
+# drop the column containing characters i.e., Species 
+iris <- iris[,!( names(iris) %in% "Species")]
+dim(iris)
+
+# find the mean of the first 4 numerical columns 
+lapply(iris, mean) # simpler: colMeans(iris)
+
+# simplify the result 
+sapply(iris, mean)
+
+# find the mean for each row. 
+apply(iris, 1 , mean) #simpler : rowMeans(iris)
+```
   
 
 
