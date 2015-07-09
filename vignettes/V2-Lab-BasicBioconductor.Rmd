@@ -1,0 +1,196 @@
+---
+title: "3. Basic Lab for R & Bioconductor "
+author: "Sonali Arora"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  % \VignetteIndexEntry{3. Basic Lab for R & Bioconductor}
+  % \VignetteEngine{knitr::rmarkdown}
+---
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+options(width=100, max.print=1000)
+knitr::opts_chunk$set(
+    eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
+    cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")))
+```
+
+Author: Sonali Arora (<a
+  href="mailto:sarora@fredhutch.org">sarora@fredhutch.org</a>)<br/ >
+Date: 20-22 July, 2015<br />
+
+The material in this course requires R version 3.2 and Bioconductor
+version 3.1
+
+
+## Basic lab for Bioconductor 
+
+1. How do you download any package from Bioconductor ? More precisely what 
+commands do you use? 
+
+2. using the given GRanges , do the following - 
+
+```{r}
+library(GenomicRanges)
+gr <-
+ GRanges(seqnames = paste0("chr", c(1:22, tail(letters, 11))),
+ ranges = IRanges(start=1:33, width = 1000 ),
+ strand = c(rep("+", 10), rep("-", 23)),
+ score = 1:33,
+ GC = seq(1, 0, length=33))
+```
+
+a) extract ranges only from chromosome 3 
+b) extract the first five ranges from the GRanges.
+c) extract the score and gc column of the GRanges 
+d) keep only the standard chromosomes (i.e.) from chromosome 1 to 22, x, y,m
+e) change the chromosome naming style i.e. this GRanges contains UCSC style 
+of chromosome names, change them to NCBI style of chromosome names. 
+f) how do you find out the ranges contained in the gaps of this GRanges object?
+g) How do you find out the degree of overlap for all the ranges in a GRanges
+object ? ( Hint: ?coverage)
+
+3. Find the package in Bioconductor which contains annotation databases 
+generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in 
+an variable called 'txdb'. Using this object , find the following - 
+a) all the genes contained in this assembly and save it in a varible called 
+'ratGenes'.
+b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist 
+in 'ratGenes'? what are its chromosome coordinates ?
+
+4. Find the package in Bioconductor thats stores the Full genome sequences for 
+Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012) 
+a) Load the package and save it in a object called 'ratSeq'
+b) what object is this sequence information stored in ?
+c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'
+d) calculate the GC content from this sequnence. 
+
+5. In the 'ratGenes' object above, you get only the entrez gene ids, can you get
+the gene names for each gene ?
+
+6. Get the annotation databases from NCBI for Homo sapiens 
+(assembly build GRCh38.80), create a txdb object (similar to what we saw in 
+question 3 above) and get the genes. ( Hint - involves starting from scratch
+with a GTF file)
+
+## Solutions
+
+_Answer 1_ 
+
+If the package we are trying to download is called *GenomeInfoDb* then 
+```{r load-pkg, eval=FALSE}
+source("http://bioconductor.org/biocLite.R")
+biocLite("GenomeInfoDb")
+```
+
+_Answer 2_ 
+
+```{r gr-pkg}
+
+gr <-
+ GRanges(seqnames = paste0("chr", c(1:22, tail(letters, 11))),
+ ranges = IRanges(start=1:33, width = 1000 ),
+ strand = c(rep("+", 10), rep("-", 23)),
+ score = 1:33,
+ GC = seq(1, 0, length=33))
+
+# extract ranges only from chromosome 3 
+gr[seqnames(gr) %in% "chr3",]
+
+# extract the first five ranges from the GRanges.
+gr[1:5, ]
+
+# extract the score and sequence column from a GRanges
+mcols(gr)
+
+# keep only the standard chromosomes (i.e.) from chromosome 1 to 22, x, y,m
+keepStandardChromosomes(gr)
+
+# change the chromosome naming style to NCBI
+seqlevelsStyle(gr) <- "NCBI"
+gr
+
+# gaps in the ranges
+gaps(gr)
+
+# find degree of overlap for ranges.
+coverage(gr)
+
+```
+
+_Answer 3_ 
+```{r txdb}
+suppressPackageStartupMessages({
+    library("TxDb.Rnorvegicus.UCSC.rn5.refGene")
+})
+txdb <- TxDb.Rnorvegicus.UCSC.rn5.refGene
+ratGenes <- genes(txdb) 
+acsl5 <- ratGenes[which(mcols(ratGenes)$gene_id==94340),]
+acsl5
+```
+
+_Answer 4_
+
+```{r bsgenome}
+suppressPackageStartupMessages({
+    library(BSgenome.Rnorvegicus.UCSC.rn5)
+})
+ratSeq <- BSgenome.Rnorvegicus.UCSC.rn5
+class(ratSeq)
+acsl5_sequence <- getSeq(ratSeq, acsl5)
+letterFrequency(acsl5_sequence, "GC", as.prob=TRUE)
+```
+
+_Answer 5_ 
+
+```{r select-rat}
+library("Rattus.norvegicus")
+ratGeneNames <- select(Rattus.norvegicus, ratGenes$gene_id, 
+                       columns=c("SYMBOL", 'GENEID'), keytype="GENEID")
+idx <- match(ratGeneNames$GENEID, ratGenes$gene_id)
+mcols(ratGenes) <- ratGeneNames[idx,]
+ratGenes
+```
+
+
+_Answer 6_
+
+Steps include 
+a) Getting the GTF file from NCBI for a particular build of Homo
+sapiens that you're interested in. ( AnnotationHub is a package inside 
+Bioconductor which automatically gets the file for you)
+b) create a txdb object from this GTF file (which is read in as a GRanges)
+c) extract genes from the txdb object as before. 
+
+These steps are beneficial if you cannot find pre-packaged genome annotations
+for your favourite organism as a package inside Bioconductor. 
+
+```{r gtf-to-gr, eval=FALSE}
+
+library(AnnotationHub)
+ah = AnnotationHub()
+
+# find the file 
+gtf_humans <- query(ah , c("gtf", "Homo sapiens", "grch38","80"))
+gtf_humans
+
+# download the file
+gtfFile <- ah[["AH47066"]]
+
+# create a txdb 
+library(GenomicFeatures)
+txdb <- makeTxDbFromGRanges(gtfFile)  #may take some time..
+txdb
+
+# get the genes from the taxdb object
+humanGenes <- genes(txdb)
+```
+
+
+## SessionInfo
+
+```{r}
+sessionInfo()
+```
