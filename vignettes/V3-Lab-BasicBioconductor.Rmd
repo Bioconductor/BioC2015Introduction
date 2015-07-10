@@ -29,7 +29,6 @@ version 3.2
 
 __Exercise 1__  
    - How do you download any package from Bioconductor ? 
-      More precisely what commands do you use?   
    - How do you access the vignettes for a given package ?   
    - How do you find help for a function (say `sortSeqlevels`)
 
