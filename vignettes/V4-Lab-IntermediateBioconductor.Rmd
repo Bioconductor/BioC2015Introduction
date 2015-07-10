@@ -60,7 +60,6 @@ __Exercise 5__
 The liftOver facilities developed in conjunction with the UCSC browser track   
 infrastructure are available for transforming data in GRanges formats.  
 We want to transform data from rn4 to the latest asembly rn6.   
-
 a) The transformation to rn6 coordinates is defined by a chain file   
 provided by UCSC. Get the chain file which contains transformations  
 from rn5 to rn6.   
