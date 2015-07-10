@@ -82,7 +82,7 @@ A typical workflow consists of the following steps.
 
 ## Where does Bioconductor fit in 
 
-### Infrastructure
+### I. Infrastructure
 
 One of the biggest strengths of Bioconductor is the classes defined to make 
 simple tasks extremely easy and streamlined. 
@@ -133,7 +133,7 @@ The SummarizedExperiment class is a matrix-like container where
 
 ![Alt Ranges Algebra](our_figures/SummarizedExperiment.png)
 
-### Reading in Various file formats using R/Bioconductor
+### II. Reading in Various file formats using R/Bioconductor
 
 ![Alt Ranges Algebra](our_figures/FilesToPackages.png)
 
@@ -170,7 +170,7 @@ j_overlap <- j[j %over% roi]
 paln[j_overlap$revmap[[1]]]
 ```
 
-### Annotations 
+### III. Annotations 
 
 #### __1. AnnotationHub: Bioconductor Package to Manage & Download files__
  `r Biocpkg("AnnotationHub")` is a web client with which one can browse and   
@@ -240,7 +240,7 @@ columns(org.Hs.eg.db)
 - [ArrayExpress](http://www.ebi.ac.uk/arrayexpress/)  Array and other data
 - ...
 
-### Statistical Analysis 
+### IV. Statistical Analysis 
 
 _Bioconductor_ packages are organized by
 [biocViews](http://bioconductor.org/packages/devel/BiocViews.html#___Software). 
