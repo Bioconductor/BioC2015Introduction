@@ -224,6 +224,7 @@ genes(txdb)
 - Vector of keys, desired columns
 - Specification of key type
 ```{r select}
+library(org.Hs.eg.db)
 select(org.Hs.eg.db, c("BRCA1", "PTEN"), c("ENTREZID", "GENENAME"), "SYMBOL")
 keytypes(org.Hs.eg.db)
 columns(org.Hs.eg.db)
