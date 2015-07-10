@@ -82,7 +82,7 @@ data <- matrix(1:297, ncol=9,  byrow=TRUE)
 The data from the 20 genes can be represented as a `GRanges`
 
 ```{r se-gr}
-20gene_gr <-
+gr_20gene <-
     GRanges(seqnames = = paste0("gene", 1:20),   
     ranges = IRanges(start=1:20, width = 1000 ),  
     strand = c(rep("+", 10), rep("-", 10)),  
@@ -181,7 +181,7 @@ library(SummarizedExperiment)
 sample_df <- data.frame( names=c("Martin", "Herve", "Dan",   
     "Marc", "Valerie", "Jim", "Nate","Paul", "Sonali"),   
     sex=c(rep("Male", 4), "Female", rep("Male", 3), "Female"))
-20gene_gr <-
+gr_20genes <-
     GRanges(seqnames = paste0("gene", 1:20),
     ranges = IRanges(start=1:20, width = 1000 ),
     strand = c(rep("+", 10), rep("-", 10)),
@@ -191,7 +191,7 @@ data <- matrix(1:297,ncol=9,  byrow=TRUE)
 
 ## create a SummarizedExperiment object
 core_se <- SummarizedExperiment(assays=data,
-           rowRanges=20genes_gr, 
+           rowRanges=gr_20genes, 
            colData=DataFrame(sample_df))
 core_se
 
