@@ -137,7 +137,7 @@ The SummarizedExperiment class is a matrix-like container where
 
 ![Alt Ranges Algebra](our_figures/FilesToPackages.png)
 
-#### Example - Reading in BAM files
+__Example - Reading in BAM files__   
   The `r Biocpkg("GenomicAlignments")` package is used to input reads
   aligned to a reference genome. In this next example, we will read
   in a BAM file and specifically read in reads supporting an apparent   
