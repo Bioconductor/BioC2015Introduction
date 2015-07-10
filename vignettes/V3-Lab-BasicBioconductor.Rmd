@@ -54,32 +54,7 @@ gr <-
  GC = seq(1, 0, length=33))
 ```  
 
-__Exercise 3__  
-Find the package in Bioconductor which contains annotation databases  
-generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
-a variable called 'txdb'. Using this object , find the following -   
-a) all the genes contained in this assembly and save it in a varible called   
-'ratGenes'.  
-b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
-in 'ratGenes'? what are its chromosome coordinates ?  
 
-__Exercise 4__  
-Find the package in Bioconductor thats stores the Full genome sequences for  
-Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
-a) Load the package and save it in a object called 'ratSeq'  
-b) what object is this sequence information stored in ?  
-c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'  
-d) calculate the GC content from this sequnence.   
-
-__Exercise 5__   
-In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
-the gene names for each gene ?  
-
-__Exercise 6__  
-Get the annotation databases from NCBI for Homo sapiens  
-(assembly build GRCh38.80), create a txdb object (similar to what we saw in  
-question 3 above) and get the genes. ( Hint - involves starting from scratch  
-with a GTF file)
 
 ## Solutions
 
@@ -123,72 +98,6 @@ gaps(gr)
 coverage(gr)
 
 ```
-
-__Answer 3__  
-```{r txdb}
-suppressPackageStartupMessages({
-    library("TxDb.Rnorvegicus.UCSC.rn5.refGene")
-})
-txdb <- TxDb.Rnorvegicus.UCSC.rn5.refGene
-ratGenes <- genes(txdb) 
-acsl5 <- ratGenes[which(mcols(ratGenes)$gene_id==94340),]
-acsl5
-```
-
-__Answer 4__  
-```{r bsgenome}
-suppressPackageStartupMessages({
-    library(BSgenome.Rnorvegicus.UCSC.rn5)
-})
-ratSeq <- BSgenome.Rnorvegicus.UCSC.rn5
-class(ratSeq)
-acsl5_sequence <- getSeq(ratSeq, acsl5)
-letterFrequency(acsl5_sequence, "GC", as.prob=TRUE)
-```
-
-__Answer 5__   
-```{r select-rat}
-library("Rattus.norvegicus")
-ratGeneNames <- select(Rattus.norvegicus, ratGenes$gene_id, 
-                       columns=c("SYMBOL", 'GENEID'), keytype="GENEID")
-idx <- match(ratGeneNames$GENEID, ratGenes$gene_id)
-mcols(ratGenes) <- ratGeneNames[idx,]
-ratGenes
-```
-
-
-__Answer 6__  
-Steps include   
-a) Getting the GTF file from NCBI for a particular build of Homo  
-sapiens that you're interested in. ( AnnotationHub is a package inside   
-Bioconductor which automatically gets the file for you)  
-b) create a txdb object from this GTF file (which is read in as a GRanges)  
-c) extract genes from the txdb object as before.   
-
-These steps are beneficial if you cannot find pre-packaged genome annotations  
-for your favourite organism as a package inside Bioconductor.   
-
-```{r gtf-to-gr, eval=FALSE}
-
-library(AnnotationHub)
-ah = AnnotationHub()
-
-# find the file 
-gtf_humans <- query(ah , c("gtf", "Homo sapiens", "grch38","80"))
-gtf_humans
-
-# download the file
-gtfFile <- ah[["AH47066"]]
-
-# create a txdb 
-library(GenomicFeatures)
-txdb <- makeTxDbFromGRanges(gtfFile)  #may take some time..
-txdb
-
-# get the genes from the taxdb object
-humanGenes <- genes(txdb)
-```
-
 
 ## `sessionInfo()`
 
