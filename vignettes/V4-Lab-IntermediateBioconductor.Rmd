@@ -29,9 +29,12 @@ version 3.2
 __Exercise 1__  
 Find the package in Bioconductor which contains annotation databases  
 generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
-a variable called 'txdb'. Using this object , find the following -   
-a) all the genes contained in this assembly and save it in a varible called   
+a variable called 'txdb'. Using this object , do the following -   
+a) find all the genes contained in this assembly and save it in a varible called   
 'ratGenes'.  
+b) How many sequences are contained in ratGenes ? (Hint : ?Seqinfo)   
+c) The 'ratGenes' contains scaffolds also - how do you subsetthe object to  
+contain sequences only from the standard chromosomes ?   
 b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
 in 'ratGenes'? what are its chromosome coordinates ?  
 
@@ -53,6 +56,16 @@ Get the annotation databases from NCBI for Homo sapiens
 question 3 above) and get the genes. ( Hint - involves starting from scratch  
 with a GTF file)
 
+__Exercise 5__   
+The liftOver facilities developed in conjunction with the UCSC browser track   
+infrastructure are available for transforming data in GRanges formats.  
+We want to transform data from rn4 to the latest asembly rn6.   
+
+a) The transformation to rn6 coordinates is defined by a chain file   
+provided by UCSC. Get the chain file which contains transformations  
+from rn5 to rn6.   
+b) Perform the liftover after getting the chain file.  
+
 ## Solutions
 
 __Answer 1__  
@@ -61,7 +74,17 @@ suppressPackageStartupMessages({
     library("TxDb.Rnorvegicus.UCSC.rn5.refGene")
 })
 txdb <- TxDb.Rnorvegicus.UCSC.rn5.refGene
-ratGenes <- genes(txdb) 
+
+## find all genes 
+ratGenes <- genes(txdb)
+
+## list all sequences 
+seqinfo(ratGenes)
+
+## subset to contain only standard chromosomes
+ratGenes <- keepStandardChromosomes(ratGenes)
+
+## find gene 'Acsl5'
 acsl5 <- ratGenes[which(mcols(ratGenes)$gene_id==94340),]
 acsl5
 ```
@@ -73,16 +96,26 @@ suppressPackageStartupMessages({
 })
 ratSeq <- BSgenome.Rnorvegicus.UCSC.rn5
 class(ratSeq)
+
+## get the sequence 
 acsl5_sequence <- getSeq(ratSeq, acsl5)
+
+## calculate the GC content 
 letterFrequency(acsl5_sequence, "GC", as.prob=TRUE)
 ```
 
 __Answer 3__   
 ```{r select-rat}
 library("Rattus.norvegicus")
+
+## get a mapping between all entrex id and gene names
 ratGeneNames <- select(Rattus.norvegicus, ratGenes$gene_id, 
                        columns=c("SYMBOL", 'GENEID'), keytype="GENEID")
+
+## match the entrz id with result before subsetting  
 idx <- match(ratGeneNames$GENEID, ratGenes$gene_id)
+
+## add mactched result to GRanges
 mcols(ratGenes) <- ratGeneNames[idx,]
 ratGenes
 ```
@@ -104,20 +137,49 @@ for your favourite organism as a package inside Bioconductor.
 library(AnnotationHub)
 ah = AnnotationHub()
 
-# find the file 
+## find the file 
 gtf_humans <- query(ah , c("gtf", "Homo sapiens", "grch38","80"))
 gtf_humans
 
-# download the file
+## download the file
 gtfFile <- ah[["AH47066"]]
 
-# create a txdb 
+## create a txdb 
 library(GenomicFeatures)
 txdb <- makeTxDbFromGRanges(gtfFile)  #may take some time..
 txdb
 
-# get the genes from the taxdb object
+## get the genes from the taxdb object
 humanGenes <- genes(txdb)
+```
+__Answer 5__  
+
+One way of getting a chain file would be to find the file  
+in ucsc, download it and read it in using `rtracklayer::import.chain()`.   
+An easier solution would be to find the files via `AnnotationHub`
+
+
+```{r chainfile}
+
+## a) get the chain file 
+
+## load the package and query the files to find the file we want
+library(AnnotationHub)
+ah = AnnotationHub()
+query(ah , c("rattus", "rn5", "rn6"))
+
+## learn more about the file you want
+ah["AH14761"]
+
+## download the file
+ratChain <- ah[["AH14761"]]
+ratChain
+
+## b) perform the liftover 
+
+library(rtracklayer)
+lft <- liftOver(acsl5, ratChain)
+lft
 ```
 
 ## `sessionInfo()`
