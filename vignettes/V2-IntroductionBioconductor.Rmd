@@ -133,7 +133,9 @@ The SummarizedExperiment class is a matrix-like container where
 
 ![Alt Ranges Algebra](our_figures/SummarizedExperiment.png)
 
-### Reading in Various file formats in R/Bioconductor
+### Reading in Various file formats using R/Bioconductor
+
+![Alt Ranges Algebra](our_figures/FilesToPackages.png)
 
 #### Example - Reading in BAM files
   The `r Biocpkg("GenomicAlignments")` package is used to input reads
