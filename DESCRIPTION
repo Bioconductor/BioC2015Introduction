@@ -21,4 +21,5 @@ Author: Sonali Arora [aut, cre]
 Maintainer: Sonali Arora <sarora@fredhutch.org>
 Suggests: knitr, BiocStyle, BiocInstaller, 
     TxDb.Rnorvegicus.UCSC.rn5.refGene, BSgenome.Rnorvegicus.UCSC.rn5,   
-    GenomicFeatures, GenomicRanges, AnnotationHub
+    Rattus.norvegicus, 
+    GenomicFeatures, GenomicRanges, AnnotationHub, rtracklayer
