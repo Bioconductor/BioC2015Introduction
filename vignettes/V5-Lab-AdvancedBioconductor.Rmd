@@ -1,0 +1,33 @@
+---
+title: "5. Advanced Lab for R & Bioconductor "
+author: "Sonali Arora"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  % \VignetteIndexEntry{5. Advanced Lab for R & Bioconductor}
+  % \VignetteEngine{knitr::rmarkdown}
+---
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+options(width=100, max.print=1000)
+knitr::opts_chunk$set(
+    eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
+    cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")))
+```
+
+Author: Sonali Arora (<a
+  href="mailto:sarora@fredhutch.org">sarora@fredhutch.org</a>)<br/ >
+Date: 20-22 July, 2015<br />
+
+The material in this course requires R version 3.2.1 and Bioconductor
+version 3.2
+
+## Advanced lab for Bioconductor 
+
+## `sessionInfo()`
+
+```{r sessionInfo}
+sessionInfo()
+```
