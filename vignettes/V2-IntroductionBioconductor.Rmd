@@ -127,9 +127,9 @@ _GRanges_ Algebra
 #### 2. SummarizedExperiment 
 
 The SummarizedExperiment class is a matrix-like container where
-     rows represent ranges of interest (as a ‘GRanges or
-     GRangesList-class’) and columns represent samples (with sample
-     data summarized as a ‘DataFrame-class’)
+     rows represent ranges of interest (as a 'GRanges or
+     GRangesList-class') and columns represent samples (with sample
+     data summarized as a 'DataFrame-class')
 
 ![Alt Ranges Algebra](our_figures/SummarizedExperiment.png)
 

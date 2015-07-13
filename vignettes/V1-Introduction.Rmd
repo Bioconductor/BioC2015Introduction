@@ -12,6 +12,7 @@ vignette: >
 ```{r style, echo = FALSE, results = 'asis'}
 BiocStyle::markdown()
 options(width=100, max.print=1000)
+options(useFancyQuotes=FALSE)
 knitr::opts_chunk$set(
     eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
     cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")))
@@ -28,7 +29,7 @@ version 3.2
 
 - http://r-project.org
 - Open-source, statistical programming language; widely used in academia, finance, pharma, . . .
-- Core language, ‘base’ and > 4000 contributed packages
+- Core language, 'base' and > 4000 contributed packages
 - Interactive sessions, scripts, packages
 
 ## Useful Functions in  base R 
@@ -73,33 +74,33 @@ version 3.2
 ## Data types in R 
 
 - Vectors 
-  – logical, integer, numeric, character, . . .  
-  - list() – contains other vectors (recursive)
-  - factor(), NA – statistical concepts  
-  - Can be named – c(Seattle=1, Portland=2)  
-- matrix(), array() – a vector with a ‘dim’ attribute.  
+  - logical, integer, numeric, character, . . .  
+  - list() - contains other vectors (recursive)
+  - factor(), NA - statistical concepts  
+  - Can be named - c(Seattle=1, Portland=2)  
+- matrix(), array() - a vector with a 'dim' attribute.  
 - data.frame()  
    - like spreadsheets; list of equal length vectors.
    - Homogenous types within a column, heterogenous types across columns.  
-- Other classes 
-  – more complicated arrangement of vectors.
+- Other classes    
+   - more complicated arrangement of vectors.
   - Examples  
      - the value returned by lm(); 
      - the DNAStringSet class used to hold DNA sequences.
-  - plain, ‘accessor’, ‘generic’, and ‘method’ functions
-- Packages 
-  – base, recommended, contributed.  
+  - plain, 'accessor', 'generic', and 'method' functions
+- Packages  
+  - base, recommended, contributed.  
 
 ## R programming concepts 
 
- - Functions – built-in (e.g., rnorm()); user-defined
+ - Functions - built-in (e.g., rnorm()); user-defined
 
 ```{r}
 mean(1:10)
 rnorm(1:10)
 summary(rnorm(1:10))
 ```
-- Subsetting – logical, numeric, character; 
+- Subsetting - logical, numeric, character; 
 
 ```{r}
 data(iris) 
@@ -116,7 +117,7 @@ dim(setosa_iris)
 head(setosa_iris)
 ```
 
-- Iteration – over vector elements, lapply(), mapply(), apply()
+ - Iteration - over vector elements, lapply(), mapply(), apply()
 
 ```{r}
 # drop the column containing characters i.e., Species 
