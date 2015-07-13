@@ -124,7 +124,7 @@ __Answer 2__
 ```{r basic-R}
 ##  Reading the data 
 fname <- system.file("extdata", "epi_metadata.txt", package="BioC2015Introduction")
-df <- read.table(fname, header=TRUE, sep="\t")
+df <- read.delim(fname)
 
 ##  Exploring the data
 class(df) 
