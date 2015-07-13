@@ -86,8 +86,8 @@ gr_20gene <-
     GRanges(seqnames = paste0("gene", 1:20),   
     ranges = IRanges(start=1:20, width = 1000 ),  
     strand = c(rep("+", 10), rep("-", 10)),  
-    score = 1:10,  
-    GC = seq(1, 0, length=10))
+    score = 1:20,  
+    GC = seq(1, 0, length=20))
 ```
 The data about the 20 individuals is stored in a `data.frame` 
 
