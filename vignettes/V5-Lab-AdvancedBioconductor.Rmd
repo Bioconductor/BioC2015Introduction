@@ -198,10 +198,16 @@ plotCounts(dds, gene=topGene, intgroup=c("dex"))
 ## References 
 
 For a much detailed analysis see  
-- [Airway Vignette](http://bioconductor.org/packages/devel/data/experiment/vignettes/airway/inst/doc/airway.html)   
+- [Case Study- How to build a SummarizedExperiment - airway dataset](http://bioconductor.org/packages/devel/data/experiment/vignettes/airway/inst/doc/airway.html)   
 - [Differential Expression Lab](http://bioconductor.org/help/course-materials/2015/SeattleApr2015/C_DifferentialExpression.html#practical-rna-seq-gene-level-differential-expression)
-- Lab at BioC2015 by Mike Love. Differential expression, manipulation, and visualization of RNA-seq reads. (Session 1, Tuesday,  1:00pm -2:45pm)
-- Lab at Bioc2015 by Thomas Girke. Automated NGS workflows with systemPipeR running on clusters or single machines, with a focus on VAR-seq.(Session 4, Tuesday,  3:15pm - 5:00pm)
+
+
+## What to not miss at BioC2015 ! 
+
+If you liked this lab and want to learn more in this area, do not miss the following labs at BioC2015
+
+- _Differential expression, manipulation, and visualization of RNA-seq reads_ by Mike Love.  (Session 1, Tuesday,  1:00pm -2:45pm)
+- _Automated NGS workflows with systemPipeR running on clusters or single machines, with a focus on VAR-seq_ by Thomas Girke. (Session 4, Tuesday,  3:15pm - 5:00pm)
 
 ## `sessionInfo()`
 
