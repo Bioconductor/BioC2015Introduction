@@ -1,12 +1,12 @@
 ---
-title: "6. Advanced Lab for R & Bioconductor - RNA-Seq "
+title: "6. Advanced Lab for R & Bioconductor - RNA-Seq Analysis
 author: "Sonali Arora"
 output:
   BiocStyle::html_document:
     toc: true
     toc_depth: 2
 vignette: >
-  % \VignetteIndexEntry{5. Advanced Lab for R & Bioconductor}
+  % \VignetteIndexEntry{6. Advanced Lab for R & Bioconductor - RNA-Seq Analysis}
   % \VignetteEngine{knitr::rmarkdown}
 ---
 ```{r style, echo = FALSE, results = 'asis'}
@@ -24,7 +24,7 @@ Date: 20-22 July, 2015<br />
 The material in this course requires R version 3.2.1 and Bioconductor
 version 3.2
 
-## Advanced lab for Bioconductor 
+## Advanced lab for Bioconductor - RNA-Seq Analysis
 
 This lab will walk you through an end-to-end RNA-Seq differential
 expression workflow, using `r Biocpkg("DESeq2")` along with other
