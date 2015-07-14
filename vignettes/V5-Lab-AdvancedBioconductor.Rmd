@@ -26,6 +26,192 @@ version 3.2
 
 ## Advanced lab for Bioconductor 
 
+This lab will walk you through an end-to-end RNA-Seq differential
+expression workflow, using `r Biocpkg("DESeq2")` along with other
+_Bioconductor_ packages.
+
+Note: a number of other _Bioconductor_ packages can also be used for
+statistical inference of differential expression at the gene level including
+`r Biocpkg("edgeR")`, `r Biocpkg("BaySeq")`, `r Biocpkg("DSS")` and
+`r Biocpkg("limma")`.
+
+## Data for the analysis 
+
+The data used in this Lab is an RNA-Seq experiment of airway
+smooth muscle cells treated with dexamethasone, a synthetic
+glucocorticoid steroid with anti-inflammatory effects. Glucocorticoids
+are used, for example, in asthma patients to prevent or reduce
+inflammation of the airways. In the experiment, four primary human
+airway smooth muscle cell lines were treated with 1 micromolar
+dexamethasone for 18 hours. For each of the four cell lines, we have a
+treated and an untreated sample. 
+
+The reference for the experiment is:
+
+Himes BE, Jiang X, Wagner P, Hu R, Wang Q, Klanderman B, Whitaker RM,
+Duan Q, Lasky-Su J, Nikolos C, Jester W, Johnson M, Panettieri R Jr,
+Tantisira KG, Weiss ST, Lu Q. "RNA-Seq Transcriptome Profiling
+Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates
+Cytokine Function in Airway Smooth Muscle Cells." PLoS One. 2014 Jun
+13;9(6):e99625.
+PMID: [24926665](http://www.ncbi.nlm.nih.gov/pubmed/24926665).
+GEO: [GSE52778](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
+
+_Bioconductor_ software packages often define and use a custom class for
+their data object, which makes sure that all the needed data slots are
+consistently provided and fulfill the requirements.
+In `r Biocpkg("DESeq2")`, the custom class is called
+*DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
+
+For our analysis, we wil use data from the data package `r Biocpkg("airway")`.
+
+```{r load-data}
+library("airway")
+data(airway)
+se <- airway
+```
+The data stored inside `r Biocpkg("airway")` is a 
+*SummarizedExperiment* object. For a *SummarizedExperiment* 
+object, The `assay(s)` contains the matrix (or matrices) 
+of summarized values, the `rowData` 
+contains information about the genomic ranges, and the 
+`colData`  contains information about the samples or experiments.
+
+## Exercise 
+
+Using the data from `r Biocpkg("airway")`, design and implement  
+an end-to-end RNA-Seq differential expression analysis, 
+using `r Biocpkg("DESeq2")` 
+
+Steps include - 
+
+- Load the data package and explore the dataset using basic accessors 
+- Create the *DESeqDataSet* from *SummarizedExperiment*
+- Run the Differential Expression Pipeline 
+- Build the results table
+- Building some Diagnostic Plots/ Visualize Results 
+
+## Solutions 
+
+### Exercise 1 : Load the Data
+```{r play}
+se
+head(assay(se))
+colSums(assay(se))
+colData(se)
+rowData(se)
+``` 
+### Exercise 2 : Create the *DESeqDataSet*   
+
+ Once we have our fully annotated *SummarizedExperiment* object,
+ we can construct a *DESeqDataSet* object from it, which will then form
+ the starting point of the actual *DESeq2* package, described in the
+following sections. We add an appropriate design for the analysis.
+
+```{r}
+library("DESeq2")
+dds <- DESeqDataSet(se, design = ~ cell + dex)
+```
+### Exercise 3 : Differential Expression Pipeline 
+
+It will be convenient to make sure that `untrt` is the first level in
+the `dex` factor, so that the default log2 fold changes are calculated
+as treated over untreated (by default R will chose the first
+alphabetical level, remember: computers don't know what to do unless
+you tell them). The function *relevel* achieves this:
+
+```{r}
+dds$dex <- relevel(dds$dex, "untrt")
+```
+Finally, we are ready to run the differential expression pipeline.
+With the data object prepared, the *DESeq2* analysis can now be run
+with a single call to the function *DESeq*:
+
+```{r}
+dds <- DESeq(dds)
+```
+This function will print out a message for the various steps it
+performs. These are described in more detail in the manual page for
+*DESeq*, which can be accessed by typing `?DESeq`. Briefly these are:
+the estimation of size factors (which control for differences in the
+library size of the sequencing experiments), the estimation of
+dispersion for each gene, and fitting a generalized linear model.
+
+A *DESeqDataSet* is returned which contains all the fitted
+information within it, and the following section describes how to
+extract out results tables of interest from this object.
+
+### Exercise 4 : Build the results table 
+
+Calling *results* without any arguments will extract the estimated
+log2 fold changes and *p* values for the last variable in the design
+formula. If there are more than 2 levels for this variable, *results*
+will extract the results table for a comparison of the last level over
+the first level.
+
+```{r}
+(res <- results(dds))
+```
+
+As `res` is a *DataFrame* object, it carries metadata
+with information on the meaning of the columns:
+
+```{r}
+mcols(res, use.names=TRUE)
+```
+
+The first column, `baseMean`, is a just the average of the normalized
+count values, dividing by size factors, taken over all samples. The
+remaining four columns refer to a specific contrast, namely the
+comparison of the `trt` level over the `untrt` level for the factor
+variable `dex`. See the help page for *results* (by typing `?results`)
+for information on how to obtain other contrasts.
+
+The column `log2FoldChange` is the effect size estimate. It tells us
+how much the gene's expression seems to have changed due to treatment
+with dexamethasone in comparison to untreated samples.  This value is
+reported on a logarithmic scale to base 2: for example, a log2 fold
+change of 1.5 means that the gene's expression is increased by a
+multiplicative factor of $2^{1.5} \approx 2.82$.
+
+Of course, this estimate has an uncertainty associated with it, which
+is available in the column `lfcSE`, the standard error estimate for
+the log2 fold change estimate.  We can also express the uncertainty of
+a particular effect size estimate as the result of a statistical
+test. The purpose of a test for differential expression is to test
+whether the data provides sufficient evidence to conclude that this
+value is really different from zero. *DESeq2* performs for each gene a
+*hypothesis test* to see whether evidence is sufficient to decide
+against the *null hypothesis* that there is no effect of the treatment
+on the gene and that the observed difference between treatment and
+control was merely caused by experimental variability (i.e., the type
+of variability that you can just as well expect between different
+samples in the same treatment group). As usual in statistics, the
+result of this test is reported as a *p* value, and it is found in the
+column `pvalue`. (Remember that a *p* value indicates the probability
+that a fold change as strong as the observed one, or even stronger,
+would be seen under the situation described by the null hypothesis.)
+
+We can also summarize the results with the following line of code,
+which reports some additional information, which will be covered in
+later sections.
+
+```{r}
+summary(res)
+```
+### Exercise 5 : Visualize Results 
+
+A quick way to visualize the counts for a particular gene is to use
+the *plotCounts* function, which takes as arguments the
+*DESeqDataSet*, a gene name, and the group over which to plot the
+counts. 
+
+```{r plotcounts, fig.width=5, fig.height=5}
+topGene <- rownames(res)[which.min(res$padj)]
+plotCounts(dds, gene=topGene, intgroup=c("dex"))
+```
+
+
 ## `sessionInfo()`
 
 ```{r sessionInfo}
