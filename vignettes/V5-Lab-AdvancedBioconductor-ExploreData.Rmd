@@ -1,0 +1,228 @@
+---
+title: "5. Advanced Lab - Explore the Data "
+author: "Sonali Arora"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  % \VignetteIndexEntry{5. Advanced Lab  - Explore the Data}
+  % \VignetteEngine{knitr::rmarkdown}
+---
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+options(width=100, max.print=1000)
+knitr::opts_chunk$set(
+    eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
+    cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")))
+```
+
+Author: Sonali Arora (<a
+  href="mailto:sarora@fredhutch.org">sarora@fredhutch.org</a>)<br/ >
+Date: 20-22 July, 2015<br />
+
+The material in this course requires R version 3.2.1 and Bioconductor
+version 3.2
+
+## Advanced lab for Bioconductor - Explore the Data 
+
+In this lab, we will explore the dataset from `r Biocpkg("airway")`,
+and then subsequently use the same to run a quick RNA-seq analysis.
+
+Steps include - 
+
+- Load the data package and explore the dataset using basic accessors 
+- Performing a `rlog` transformation
+- Assessing which samples are similar to each other by 
+   - building a heatmap
+   - using Principal Component Analysis (PCA) 
+   - using Multidimensional Scaling (MDS)
+- Summarizing the plots
+
+## Data for the Lab 
+
+The data used in this Lab is an RNA-Seq experiment of airway
+smooth muscle cells treated with dexamethasone, a synthetic
+glucocorticoid steroid with anti-inflammatory effects. Glucocorticoids
+are used, for example, in asthma patients to prevent or reduce
+inflammation of the airways. In the experiment, four primary human
+airway smooth muscle cell lines were treated with 1 micromolar
+dexamethasone for 18 hours. For each of the four cell lines, we have a
+treated and an untreated sample. 
+
+The reference for the experiment is:
+
+Himes BE, Jiang X, Wagner P, Hu R, Wang Q, Klanderman B, Whitaker RM,
+Duan Q, Lasky-Su J, Nikolos C, Jester W, Johnson M, Panettieri R Jr,
+Tantisira KG, Weiss ST, Lu Q. "RNA-Seq Transcriptome Profiling
+Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates
+Cytokine Function in Airway Smooth Muscle Cells." PLoS One. 2014 Jun
+13;9(6):e99625.
+PMID: [24926665](http://www.ncbi.nlm.nih.gov/pubmed/24926665).
+GEO: [GSE52778](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
+
+For our analysis, we wil use data from the data package `r Biocpkg("airway")`.
+
+```{r load-data}
+library("airway")
+data(airway)
+```
+
+## Solutions 
+
+### Exercise 1 : Load the Data
+
+_Bioconductor_ software packages often define and use a custom class for
+their data object, which makes sure that all the needed data slots are
+consistently provided and fulfill the requirements.
+
+The data stored inside `r Biocpkg("airway")` is a 
+*SummarizedExperiment* object. 
+
+```{r play}
+library("airway")
+data(airway)
+se <- airway
+se
+```
+For a *SummarizedExperiment* 
+object, The `assay(s)` contains the matrix (or matrices) 
+of summarized values, the `rowData` 
+contains information about the genomic ranges, and the 
+`colData`  contains information about the samples or experiments.
+
+```{r revise-se}
+head(assay(se))
+colSums(assay(se))
+colData(se)
+rowData(se)
+```
+In `r Biocpkg("DESeq2")`, the custom class is called
+*DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
+
+```{r make-dds}
+dds <- DESeqDataSet(se, design = ~ cell + dex)  
+```
+
+### Exercise 2 : rlog transformation 
+
+Many common statistical methods for exploratory analysis of multidimensional 
+data, especially methods for clustering and ordination (e.g., 
+principal-component analysis and the like), work best for (at least 
+approximately) homoskedastic data; this means that the variance of an observed 
+quantity (here, the expression strength of a gene) does not depend on the mean. 
+
+In RNA-Seq data, the variance grows with the mean.If one performs PCA 
+(principal components analysis) directly on a matrix of normalized read counts,
+the result typically depends only on the few most strongly expressed genes 
+because they show the largest absolute differences between samples.
+
+As a solution, DESeq2 offers the regularized-logarithm transformation, or rlog 
+for short. See the help for ?rlog for more information and options. 
+
+The function rlog returns a SummarizedExperiment object which contains the 
+rlog-transformed values in its assay slot:
+
+```{r do-rlog}    
+rld <- rlog(dds)   
+head(assay(rld))    
+```
+
+### Exercise 3 : Visualize the Data
+
+To assess overall similarity between samples: Which samples are similar to each 
+other, which are different? Does this fit to the expectation from the 
+experiment's design? We use the R function dist to calculate the Euclidean 
+distance between samples. To avoid that the distance measure is dominated by 
+a few highly variable genes, and have a roughly equal contribution from all 
+genes, we use it on the rlog-transformed data
+
+```{r dist}
+sampleDists <- dist( t( assay(rld) ) )
+sampleDists
+```
+Note the use of the function t to transpose the data matrix. We need this 
+because dist calculates distances between data rows and our samples constitute 
+the columns.
+
+####  Heatmaps 
+
+We visualize the sample-to-sample distances in a heatmap, using the 
+function heatmap.2 from  the gplots package. Note that we have changed the row 
+names of the distance matrix to contain treatment type and patient number 
+instead of sample ID, so that we have all this information in view when 
+looking at the heatmap.
+
+```{r message=FALSE}
+library("gplots")
+library("RColorBrewer")
+
+sampleDistMatrix <- as.matrix( sampleDists )
+rownames(sampleDistMatrix) <- paste( rld$dex, rld$cell, sep="-" )
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+hc <- hclust(sampleDists)
+heatmap.2( sampleDistMatrix, Rowv=as.dendrogram(hc),
+          symm=TRUE, trace="none", col=colors,
+          margins=c(2,10), labCol=FALSE )
+
+```
+
+####  PCA
+
+Another way to visualize sample-to-sample distances is a principal-components 
+analysis (PCA). In this ordination method, the data points (i.e., here, the 
+samples) are projected onto the 2D plane such that they spread out in the two 
+directions which explain most of the differences in the data. The x-axis is 
+the direction (or principal component) which separates the data points the most.
+The amount of the total variance which is contained in the direction is 
+printed in the axis label. Here, we have used the function plotPCA which comes
+with DESeq2. The two terms specified by intgroup are the interesting groups 
+for labelling the samples; they tell the function to use them to choose colors. 
+
+```{r pca}
+plotPCA(rld, intgroup = c("dex", "cell"))
+```
+
+####  MDS
+
+Another plot, very similar to the PCA plot, can be made using the 
+multidimensional scaling (MDS) function in base R. This is useful when we don't
+have the original data, but only a matrix of distances. Here we have the MDS 
+plot for the distances calculated from the rlog transformed counts:
+
+```{r mds}
+library(ggplot2)
+mds <- data.frame(cmdscale(sampleDistMatrix))
+mds <- cbind(mds, colData(rld))
+qplot(X1,X2,color=dex,shape=cell,data=as.data.frame(mds))
+```
+
+### Exercise 4 : Summarize the plots 
+
+We see that the differences between cells are 
+considerable, though not stronger than the differences due to treatment 
+with dexamethasone. This shows why it will be important to account for this 
+in differential testing by using a paired design (“paired”, because each dex 
+treated sample is paired with one untreated sample from the same cell line). 
+We are already set up for this by using the design formula ~ cell + dex when 
+setting up the data object in the beginning.
+
+## References 
+
+For a much detailed analysis see  
+- [Case Study- How to build a SummarizedExperiment - airway dataset](http://bioconductor.org/packages/devel/data/experiment/vignettes/airway/inst/doc/airway.html)   
+- [Exploring the Data using Machine Learning Techniques](http://bioconductor.org/help/course-materials/2015/SeattleApr2015/D_MachineLearning.html)
+
+
+## What to not miss at BioC2015 ! 
+
+If you liked this lab and want to learn more in this area, do not miss the following labs at BioC2015
+
+- _Differential expression, manipulation, and visualization of RNA-seq reads_ by Mike Love.  (Session 1, Tuesday,  1:00pm -2:45pm)
+- _Automated NGS workflows with systemPipeR running on clusters or single machines, with a focus on VAR-seq_ by Thomas Girke. (Session 4, Tuesday,  3:15pm - 5:00pm)
+
+## `sessionInfo()`
+
+```{r sessionInfo}
+sessionInfo()
+```
