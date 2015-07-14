@@ -202,7 +202,7 @@ qplot(X1,X2,color=dex,shape=cell,data=as.data.frame(mds))
 We see that the differences between cells are 
 considerable, though not stronger than the differences due to treatment 
 with dexamethasone. This shows why it will be important to account for this 
-in differential testing by using a paired design (“paired”, because each dex 
+in differential testing by using a paired design ('paired', because each dex 
 treated sample is paired with one untreated sample from the same cell line). 
 We are already set up for this by using the design formula ~ cell + dex when 
 setting up the data object in the beginning.
