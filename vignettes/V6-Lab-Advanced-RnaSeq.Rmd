@@ -81,7 +81,7 @@ data(airway)
 
 ## Solutions 
 
-### Exercise 1 : Load the Data
+### Answer 1 : Load the Data
 
 The data stored inside `r Biocpkg("airway")` is a 
 *SummarizedExperiment* object. 
@@ -92,7 +92,7 @@ data(airway)
 se <- airway
 se
 ``` 
-### Exercise 2 : Create the *DESeqDataSet*   
+### Answer 2 : Create the *DESeqDataSet*   
 
  Once we have our fully annotated *SummarizedExperiment* object,
  we can construct a *DESeqDataSet* object from it, which will then form
@@ -103,7 +103,7 @@ following sections. We add an appropriate design for the analysis.
 library("DESeq2")
 dds <- DESeqDataSet(se, design = ~ cell + dex)
 ```
-### Exercise 3 : Differential Expression Pipeline 
+### Answer 3 : Differential Expression Pipeline 
 
 It will be convenient to make sure that `untrt` is the first level in
 the `dex` factor, so that the default log2 fold changes are calculated
@@ -132,7 +132,7 @@ A *DESeqDataSet* is returned which contains all the fitted
 information within it, and the following section describes how to
 extract out results tables of interest from this object.
 
-### Exercise 4 : Build the results table 
+### Answer 4 : Build the results table 
 
 Calling *results* without any arguments will extract the estimated
 log2 fold changes and *p* values for the last variable in the design
@@ -170,7 +170,7 @@ which reports some additional information
 ```{r}
 summary(res)
 ```
-### Exercise 5 : Visualize Results 
+### Answer 5 : Visualize Results 
 
 A quick way to visualize the counts for a particular gene is to use
 the *plotCounts* function, which takes as arguments the
