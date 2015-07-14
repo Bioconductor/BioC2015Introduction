@@ -24,4 +24,4 @@ Suggests: knitr, BiocStyle, BiocInstaller,
     Rattus.norvegicus, RNAseqData.HNRNPC.bam.chr14, org.Hs.eg.db, 
     TxDb.Hsapiens.UCSC.hg19.knownGene, airway,
     GenomicFeatures, GenomicRanges, AnnotationHub, rtracklayer, 
-    GenomicAlignments
+    GenomicAlignments, gplots
