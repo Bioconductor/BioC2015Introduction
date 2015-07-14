@@ -101,6 +101,7 @@ In `r Biocpkg("DESeq2")`, the custom class is called
 *DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
 
 ```{r make-dds}
+library(DESeq2)
 dds <- DESeqDataSet(se, design = ~ cell + dex)  
 ```
 
