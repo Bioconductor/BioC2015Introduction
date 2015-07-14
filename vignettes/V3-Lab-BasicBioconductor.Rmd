@@ -144,6 +144,7 @@ df[df$GROUP %in% c("Brain", "Digestive"),]
 
 __Answer 3__
 ```{r gr-pkg}
+library(GenomicRanges)
 gr <-
  GRanges(seqnames = paste0("chr", c(1:22, tail(letters, 11))),
  ranges = IRanges(start=1:33, width = 1000 ),
