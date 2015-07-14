@@ -1,5 +1,5 @@
 ---
-title: "6. Advanced Lab for R & Bioconductor - RNA-Seq Analysis
+title: "6. Advanced Lab for R & Bioconductor - RNA-Seq Analysis"
 author: "Sonali Arora"
 output:
   BiocStyle::html_document:
