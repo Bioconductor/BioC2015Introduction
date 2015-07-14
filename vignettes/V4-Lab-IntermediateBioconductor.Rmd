@@ -200,7 +200,7 @@ If you liked this lab and want to learn more in this area, do not miss the follo
   Sonali Arora.  (Wednesday, Session 3, 1:00pm-2:45pm)
 - _Practical introduction to Bioconductor foundational data 
   structures for high throughput sequencing analysis_ 
-  by Hervé Pagès, Michael Lawrence. (Wednesday, Session 3, 3:15pm-5:00pm)
+  by Herve Pages, Michael Lawrence. (Wednesday, Session 3, 3:15pm-5:00pm)
 
 
 ## `sessionInfo()`
