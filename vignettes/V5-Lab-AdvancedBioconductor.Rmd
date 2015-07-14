@@ -35,6 +35,20 @@ statistical inference of differential expression at the gene level including
 `r Biocpkg("edgeR")`, `r Biocpkg("BaySeq")`, `r Biocpkg("DSS")` and
 `r Biocpkg("limma")`.
 
+## Exercise 
+
+Using the data from `r Biocpkg("airway")`, design and implement  
+an end-to-end RNA-Seq differential expression analysis, 
+using `r Biocpkg("DESeq2")` 
+
+Steps include - 
+
+- Load the data package and explore the dataset using basic accessors 
+- Create the *DESeqDataSet* from *SummarizedExperiment*
+- Run the Differential Expression Pipeline 
+- Build the results table
+- Building some Diagnostic Plots/ Visualize Results 
+
 ## Data for the analysis 
 
 The data used in this Lab is an RNA-Seq experiment of airway
@@ -57,19 +71,23 @@ Cytokine Function in Airway Smooth Muscle Cells." PLoS One. 2014 Jun
 PMID: [24926665](http://www.ncbi.nlm.nih.gov/pubmed/24926665).
 GEO: [GSE52778](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
 
+For our analysis, we wil use data from the data package `r Biocpkg("airway")`.
+
+```{r load-data}
+library("airway")
+data(airway)
+```
+
+## Solutions 
+
+### Exercise 1 : Load the Data
+
 _Bioconductor_ software packages often define and use a custom class for
 their data object, which makes sure that all the needed data slots are
 consistently provided and fulfill the requirements.
 In `r Biocpkg("DESeq2")`, the custom class is called
 *DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
 
-For our analysis, we wil use data from the data package `r Biocpkg("airway")`.
-
-```{r load-data}
-library("airway")
-data(airway)
-se <- airway
-```
 The data stored inside `r Biocpkg("airway")` is a 
 *SummarizedExperiment* object. For a *SummarizedExperiment* 
 object, The `assay(s)` contains the matrix (or matrices) 
@@ -77,24 +95,10 @@ of summarized values, the `rowData`
 contains information about the genomic ranges, and the 
 `colData`  contains information about the samples or experiments.
 
-## Exercise 
-
-Using the data from `r Biocpkg("airway")`, design and implement  
-an end-to-end RNA-Seq differential expression analysis, 
-using `r Biocpkg("DESeq2")` 
-
-Steps include - 
-
-- Load the data package and explore the dataset using basic accessors 
-- Create the *DESeqDataSet* from *SummarizedExperiment*
-- Run the Differential Expression Pipeline 
-- Build the results table
-- Building some Diagnostic Plots/ Visualize Results 
-
-## Solutions 
-
-### Exercise 1 : Load the Data
 ```{r play}
+library("airway")
+data(airway)
+se <- airway
 se
 head(assay(se))
 colSums(assay(se))
@@ -174,28 +178,8 @@ reported on a logarithmic scale to base 2: for example, a log2 fold
 change of 1.5 means that the gene's expression is increased by a
 multiplicative factor of $2^{1.5} \approx 2.82$.
 
-Of course, this estimate has an uncertainty associated with it, which
-is available in the column `lfcSE`, the standard error estimate for
-the log2 fold change estimate.  We can also express the uncertainty of
-a particular effect size estimate as the result of a statistical
-test. The purpose of a test for differential expression is to test
-whether the data provides sufficient evidence to conclude that this
-value is really different from zero. *DESeq2* performs for each gene a
-*hypothesis test* to see whether evidence is sufficient to decide
-against the *null hypothesis* that there is no effect of the treatment
-on the gene and that the observed difference between treatment and
-control was merely caused by experimental variability (i.e., the type
-of variability that you can just as well expect between different
-samples in the same treatment group). As usual in statistics, the
-result of this test is reported as a *p* value, and it is found in the
-column `pvalue`. (Remember that a *p* value indicates the probability
-that a fold change as strong as the observed one, or even stronger,
-would be seen under the situation described by the null hypothesis.)
-
 We can also summarize the results with the following line of code,
-which reports some additional information, which will be covered in
-later sections.
-
+which reports some additional information
 ```{r}
 summary(res)
 ```
@@ -211,6 +195,13 @@ topGene <- rownames(res)[which.min(res$padj)]
 plotCounts(dds, gene=topGene, intgroup=c("dex"))
 ```
 
+## References 
+
+For a much detailed analysis see  
+- [Airway Vignette](http://bioconductor.org/packages/devel/data/experiment/vignettes/airway/inst/doc/airway.html)   
+- [Differential Expression Lab](http://bioconductor.org/help/course-materials/2015/SeattleApr2015/C_DifferentialExpression.html#practical-rna-seq-gene-level-differential-expression)
+- Lab at BioC2015 by Mike Love. Differential expression, manipulation, and visualization of RNA-seq reads. (Session 1, Tuesday,  1:00pm -2:45pm)
+- Lab at Bioc2015 by Thomas Girke. Automated NGS workflows with systemPipeR running on clusters or single machines, with a focus on VAR-seq.(Session 4, Tuesday,  3:15pm - 5:00pm)
 
 ## `sessionInfo()`
 
