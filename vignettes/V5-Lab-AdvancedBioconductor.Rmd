@@ -1,5 +1,5 @@
 ---
-title: "5. Advanced Lab for R & Bioconductor "
+title: "6. Advanced Lab for R & Bioconductor - RNA-Seq "
 author: "Sonali Arora"
 output:
   BiocStyle::html_document:
@@ -43,7 +43,7 @@ using `r Biocpkg("DESeq2")`
 
 Steps include - 
 
-- Load the data package and explore the dataset using basic accessors 
+- Load the data package 
 - Create the *DESeqDataSet* from *SummarizedExperiment*
 - Run the Differential Expression Pipeline 
 - Build the results table
@@ -82,28 +82,14 @@ data(airway)
 
 ### Exercise 1 : Load the Data
 
-_Bioconductor_ software packages often define and use a custom class for
-their data object, which makes sure that all the needed data slots are
-consistently provided and fulfill the requirements.
-In `r Biocpkg("DESeq2")`, the custom class is called
-*DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
-
 The data stored inside `r Biocpkg("airway")` is a 
-*SummarizedExperiment* object. For a *SummarizedExperiment* 
-object, The `assay(s)` contains the matrix (or matrices) 
-of summarized values, the `rowData` 
-contains information about the genomic ranges, and the 
-`colData`  contains information about the samples or experiments.
+*SummarizedExperiment* object. 
 
 ```{r play}
 library("airway")
 data(airway)
 se <- airway
 se
-head(assay(se))
-colSums(assay(se))
-colData(se)
-rowData(se)
 ``` 
 ### Exercise 2 : Create the *DESeqDataSet*   
 
