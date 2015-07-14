@@ -71,7 +71,7 @@ data(airway)
 
 ## Solutions 
 
-### Exercise 1 : Load the Data
+### Answer 1 : Load the Data
 
 _Bioconductor_ software packages often define and use a custom class for
 their data object, which makes sure that all the needed data slots are
@@ -106,7 +106,7 @@ library(DESeq2)
 dds <- DESeqDataSet(se, design = ~ cell + dex)  
 ```
 
-### Exercise 2 : rlog transformation 
+### Answer 2 : rlog transformation 
 
 Many common statistical methods for exploratory analysis of multidimensional 
 data, especially methods for clustering and ordination (e.g., 
@@ -130,7 +130,7 @@ rld <- rlog(dds)
 head(assay(rld))    
 ```
 
-### Exercise 3 : Visualize the Data
+### Answer 3 : Visualize the Data
 
 To assess overall similarity between samples: Which samples are similar to each 
 other, which are different? Does this fit to the expectation from the 
@@ -199,7 +199,7 @@ mds <- cbind(mds, colData(rld))
 qplot(X1,X2,color=dex,shape=cell,data=as.data.frame(mds))
 ```
 
-### Exercise 4 : Summarize the plots 
+### Answer 4 : Summarize the plots 
 
 We see that the differences between cells are 
 considerable, though not stronger than the differences due to treatment 
