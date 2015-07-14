@@ -22,6 +22,6 @@ Maintainer: Sonali Arora <sarora@fredhutch.org>
 Suggests: knitr, BiocStyle, BiocInstaller, 
     TxDb.Rnorvegicus.UCSC.rn5.refGene, BSgenome.Rnorvegicus.UCSC.rn5,   
     Rattus.norvegicus, RNAseqData.HNRNPC.bam.chr14, org.Hs.eg.db, 
-    TxDb.Hsapiens.UCSC.hg19.knownGene, 
+    TxDb.Hsapiens.UCSC.hg19.knownGene, airway,
     GenomicFeatures, GenomicRanges, AnnotationHub, rtracklayer, 
     GenomicAlignments
