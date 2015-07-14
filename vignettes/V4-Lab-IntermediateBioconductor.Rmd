@@ -196,7 +196,7 @@ lft
 
 If you liked this lab and want to learn more in this area, do not miss the following labs at BioC2015 
 
-- _Bioconductor annotation resources_ by Marc Carlson, 
+- [_Bioconductor annotation resources_](https://github.com/mrjc42/BiocAnnotRes2015) by Marc Carlson, 
   Sonali Arora.  (Wednesday, Session 3, 1:00pm-2:45pm)
 - _Practical introduction to Bioconductor foundational data 
   structures for high throughput sequencing analysis_ 
