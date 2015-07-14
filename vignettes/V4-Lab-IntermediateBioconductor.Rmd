@@ -181,6 +181,28 @@ lft <- liftOver(acsl5, ratChain)
 lft
 ```
 
+
+## References
+
+- [Basic Introduction to GenomicRanges](http://bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.pdf)  
+- [Manipulating GRanges](http://bioconductor.org/packages/devel/bioc/vignettes/GenomeInfoDb/inst/doc/GenomeInfoDb.pdf)
+- [GenomicRangesHOWTOs (Advanced)](http://bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesHOWTOs.pdf)
+- [Working with BSgenome Packages](http://bioconductor.org/packages/devel/bioc/vignettes/BSgenome/inst/doc/GenomeSearching.pdf)  
+- [Utilizing TxDb objects with GenomicFeatures](http://bioconductor.org/packages/devel/bioc/vignettes/GenomicFeatures/inst/doc/GenomicFeatures.pdf)
+- [AnnotationHub Introduction](http://bioconductor.org/packages/devel/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub.html), [Case study](http://bioconductor.org/packages/devel/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub-HOWTO.html)
+- [liftOver workflow](http://bioconductor.org/help/workflows/liftOver/)
+
+## What to not miss at BioC2015 ! 
+
+If you liked this lab and want to learn more in this area, do not miss the following labs at BioC2015 
+
+- _Bioconductor annotation resources_ by Marc Carlson, 
+  Sonali Arora.  (Wednesday, Session 3, 1:00pm-2:45pm)
+- _Practical introduction to Bioconductor foundational data 
+  structures for high throughput sequencing analysis_ 
+  by Hervé Pagès, Michael Lawrence. (Wednesday, Session 3, 3:15pm-5:00pm)
+
+
 ## `sessionInfo()`
 
 ```{r sessionInfo}
