@@ -241,7 +241,7 @@ columns(org.Hs.eg.db)
 - [ArrayExpress](http://www.ebi.ac.uk/arrayexpress/)  Array and other data
 - ...
 
-### IV. Statistical Analysis 
+### IV. Downstream Statistical Analysis 
 
 _Bioconductor_ packages are organized by
 [biocViews](http://bioconductor.org/packages/devel/BiocViews.html#___Software). 
