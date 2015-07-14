@@ -95,7 +95,7 @@ contains information about the genomic ranges, and the
 head(assay(se))
 colSums(assay(se))
 colData(se)
-rowData(se)
+rowRanges(se)
 ```
 In `r Biocpkg("DESeq2")`, the custom class is called
 *DESeqDataSet*. It is built on top of the *SummarizedExperiment* class.
