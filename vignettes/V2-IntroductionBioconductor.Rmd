@@ -180,7 +180,7 @@ paln[j_overlap$revmap[[1]]]
  to figure out where the file is located on UCSC, downloading it and managing   
  multiple files on their local machine.   
  
- ```{r ah-demo}
+```{r ahdemo}
  library(AnnotationHub)
  ah = AnnotationHub()
  
@@ -196,7 +196,7 @@ paln[j_overlap$revmap[[1]]]
  ah2 <- query(ah, c("fasta", "homo sapiens", "Ensembl"))
  fa <- ah2[["AH18522"]]
  fa
-  ```
+```
   
 ![Alt Annotation Packages](our_figures/AnotationPackages.png)  
 
