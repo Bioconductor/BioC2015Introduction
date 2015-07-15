@@ -230,7 +230,7 @@ select(org.Hs.eg.db, c("BRCA1", "PTEN"), c("ENTREZID", "GENENAME"), "SYMBOL")
 keytypes(org.Hs.eg.db)
 columns(org.Hs.eg.db)
 ```
-#### __ Other internet resources__
+#### Other internet resources
 
 - [biomaRt](http://biomart.org)                       Ensembl and other annotations
 - [PSICQUIC](https://code.google.com/p/psicquic)      Protein interactions
