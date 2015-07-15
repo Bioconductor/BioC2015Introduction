@@ -25,6 +25,19 @@ The material in this course requires R version 3.2.1 and Bioconductor
 version 3.2
 
 
+```{r echo=FALSE, message=FALSE}
+suppressPackageStartupMessages({
+library(GenomicRanges)
+library(GenomicAlignments)
+library('RNAseqData.HNRNPC.bam.chr14')
+library(AnnotationHub)
+library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+library(org.Hs.eg.db)
+})
+ ah = AnnotationHub()
+ fa <- ah2[["AH18522"]]
+```
+
 ## What is Bioconductor 
 
 Analysis and comprehension of high-throughput genomic data
@@ -180,10 +193,11 @@ paln[j_overlap$revmap[[1]]]
  to figure out where the file is located on UCSC, downloading it and managing   
  multiple files on their local machine.   
  
-```{r ahdemo}
+```{r ahdemo, eval=FALSE}
  library(AnnotationHub)
  ah = AnnotationHub()
- 
+```
+```{r ah2}
  ## data is available from the following sources
  unique(ah$dataprovider)
  
