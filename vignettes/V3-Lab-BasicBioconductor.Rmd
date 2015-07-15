@@ -34,19 +34,15 @@ __Exercise 1__
    - How do you find help for a function (say `sortSeqlevels`)
 
 __Execise 2 : Hone your R skills__   
-The Broad Institute has the [EpigenomeRoadMap Project](http://www.roadmapepigenomics.org/)  
-Metadata for the project has been made available for you.   
+The Broad Institute has the [EpigenomeRoadMap Project](http://www.roadmapepigenomics.org/) Metadata for the project has been made available for you.   
    - Read the file into R.  
    - What does R read it in as ?  
       How do you see the first few or last few rows of the dataset ?  
       How many rows and columns are there inside this file ?   
       What are the column headers ?   
       What are the data types of each column ?   
-   - Can you summarize the whole data (Hint: ?summary)   
-      Summarize the number of males and females in this dataset  
-   -  The column called `GROUP` contains the source of the sample.  
-      Can you subset the data.frame to get all samples belonging to  
-      `BRAIN` and `DIGESTIVE`
+   - Can you summarize the whole data (Hint: ?summary) Summarize the number of males and females in this dataset  
+   -  The column called `GROUP` contains the source of the sample. Can you subset the data.frame to get all samples belonging to `BRAIN` and `DIGESTIVE`
 
 __Exercise 3 : Getting Comfortable with `GenomicRanges`__   
 Using the given GRanges , do the following   
@@ -54,11 +50,9 @@ Using the given GRanges , do the following
 - Extract the first five ranges from the GRanges.  
 - Extract the score and gc column of the GRanges  
 - Keep only the standard chromosomes (i.e.) from chromosome 1 to 22, X,Y,M.  
-- Change the chromosome naming style i.e. this GRanges contains UCSC style  
-of chromosome names, change them to NCBI style of chromosome names.   
+- Change the chromosome naming style i.e. this GRanges contains UCSC style of chromosome names, change them to NCBI style of chromosome names.   
 - How do you find out the ranges contained in the gaps of this GRanges object?  
-- How do you find out the degree of overlap for all the ranges in a   
-GRanges object ? ( Hint: ?coverage)  
+- How do you find out the degree of overlap for all the ranges in a GRanges object ? ( Hint: ?coverage)  
 
 ```{r}
 library(GenomicRanges)
@@ -71,9 +65,7 @@ gr <-
 ```  
 
 __Exercise 4: Create and Manipulate a SummarizeExperiment Object__   
-In this small exercise, We have data for 20 genes from 9 highly  
-talented individuals and we will create our first `SummarizedExperiment` 
-object. 
+In this small exercise, We have data for 20 genes from 9 highly talented individuals and we will create our first `SummarizedExperiment` object. 
 
 The data for 20 genes from 9 individuals results in a `matrix`
 
@@ -103,10 +95,8 @@ sample_df <- data.frame( names=c("Martin", "Herve", "Dan",
 - How would you access the data matrix containing numbers?
 - How would you access the information about the genes ?
 - How would you access the information about the samples? 
-- Subset the `SummarizedExperiment` to create a new one which   
-  contains information only about the female core team. 
-- Subset the `SummarizedExperiment` to create a new one   
-  containing only the first two genes. 
+- Subset the `SummarizedExperiment` to create a new one which contains information only about the female core team. 
+- Subset the `SummarizedExperiment` to create a new one containing only the first two genes. 
 
 ## Solutions
 
