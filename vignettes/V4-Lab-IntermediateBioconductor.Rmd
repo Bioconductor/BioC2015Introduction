@@ -28,42 +28,28 @@ version 3.2
 ## Intermediate lab for Bioconductor 
 
 __Exercise 1__  
-Find the package in Bioconductor which contains annotation databases  
-generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in  
-a variable called 'txdb'. Using this object , do the following -   
-a) find all the genes contained in this assembly and save it in a varible called   
-'ratGenes'.  
+Find the package in Bioconductor which contains annotation databases generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in a variable called 'txdb'. Using this object , do the following -   
+a) find all the genes contained in this assembly and save it in a varible called 'ratGenes'.  
 b) How many sequences are contained in ratGenes ? (Hint : ?Seqinfo)   
-c) The 'ratGenes' contains scaffolds also - how do you subsetthe object to  
-contain sequences only from the standard chromosomes ?   
-b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
-in 'ratGenes'? what are its chromosome coordinates ?  
+c) The 'ratGenes' contains scaffolds also - how do you subsetthe object to contain sequences only from the standard chromosomes ?   
+b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist in 'ratGenes'? what are its chromosome coordinates ?  
 
 __Exercise 2__  
-Find the package in Bioconductor thats stores the Full genome sequences for  
-Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
+Find the package in Bioconductor thats stores the Full genome sequences for Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
 a) Load the package and save it in a object called 'ratSeq'  
 b) what object is this sequence information stored in ?  
 c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'  
 d) calculate the GC content from this sequnence.   
 
 __Exercise 3__   
-In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
-the gene names for each gene ?  
+In the 'ratGenes' object above, you get only the entrez gene ids, can you get  the gene names for each gene ?  
 
 __Exercise 4__  
-Get the annotation databases from NCBI for Homo sapiens  
-(assembly build GRCh38.80), create a txdb object (similar to what we saw in  
-question 3 above) and get the genes. ( Hint - involves starting from scratch  
-with a GTF file)
+Get the annotation databases from NCBI for Homo sapiens (assembly build GRCh38.80), create a txdb object (similar to what we saw in question 3 above) and get the genes. ( Hint - involves starting from scratch  with a GTF file)
 
 __Exercise 5__   
-The liftOver facilities developed in conjunction with the UCSC browser track   
-infrastructure are available for transforming data in GRanges formats.  
-We want to transform data from rn4 to the latest asembly rn6.   
-a) The transformation to rn6 coordinates is defined by a chain file   
-provided by UCSC. Get the chain file which contains transformations  
-from rn5 to rn6.   
+The liftOver facilities developed in conjunction with the UCSC browser track infrastructure are available for transforming data in GRanges formats. We want to transform data from rn4 to the latest asembly rn6.   
+a) The transformation to rn6 coordinates is defined by a chain file provided by UCSC. Get the chain file which contains transformations from rn5 to rn6.   
 b) Perform the liftover after getting the chain file.  
 
 ## Solutions
@@ -153,14 +139,11 @@ txdb
 humanGenes <- genes(txdb)
 ```
 __Answer 5__  
-
 One way of getting a chain file would be to find the file  
 in ucsc, download it and read it in using `rtracklayer::import.chain()`.   
 An easier solution would be to find the files via `AnnotationHub`
 
-
 ```{r chainfile}
-
 ## a) get the chain file 
 
 ## load the package and query the files to find the file we want
