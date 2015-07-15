@@ -29,13 +29,10 @@ version 3.2
 
 __Exercise 1__  
 Find the package in Bioconductor which contains annotation databases generated from UCSC for Rat Norvegicus (assembly rn5), load it and save it in a variable called 'txdb'. Using this object , do the following -   
-a) find all the genes contained in this assembly and save it in a varible called   
-'ratGenes'.  
+a) find all the genes contained in this assembly and save it in a varible called 'ratGenes'.  
 b) How many sequences are contained in ratGenes ? (Hint : ?Seqinfo)   
-c) The 'ratGenes' contains scaffolds also - how do you subsetthe object to  
-contain sequences only from the standard chromosomes ?   
-b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist   
-in 'ratGenes'? what are its chromosome coordinates ?  
+c) The 'ratGenes' contains scaffolds also - how do you subsetthe object to contain sequences only from the standard chromosomes ?   
+b) I am interested in gene 'Acsl5' (entrez gene id=94340). Does this exist in 'ratGenes'? what are its chromosome coordinates ?  
 
 __Exercise 2__  
 Find the package in Bioconductor thats stores the Full genome sequences for Rattus norvegicus (Rat) as provided by UCSC (rn5, Mar. 2012)   
@@ -45,8 +42,7 @@ c) get the dna sequence information for acsl5 and store it in 'acsl5_sequence'
 d) calculate the GC content from this sequnence.   
 
 __Exercise 3__   
-In the 'ratGenes' object above, you get only the entrez gene ids, can you get  
-the gene names for each gene ?  
+In the 'ratGenes' object above, you get only the entrez gene ids, can you get  the gene names for each gene ?  
 
 __Exercise 4__  
 Get the annotation databases from NCBI for Homo sapiens (assembly build GRCh38.80), create a txdb object (similar to what we saw in question 3 above) and get the genes. ( Hint - involves starting from scratch  with a GTF file)
