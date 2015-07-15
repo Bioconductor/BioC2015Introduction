@@ -29,20 +29,20 @@ version 3.2
 ## Basic lab for Bioconductor 
 
 __Exercise 1__  
-   - How do you download any package from Bioconductor ? 
-   - How do you access the vignettes for a given package ?   
-   - How do you find help for a function (say `sortSeqlevels`)
+- How do you download any package from Bioconductor ?  
+- How do you access the vignettes for a given package ?   
+- How do you find help for a function (say `sortSeqlevels`)
 
 __Execise 2 : Hone your R skills__   
 The Broad Institute has the [EpigenomeRoadMap Project](http://www.roadmapepigenomics.org/) Metadata for the project has been made available for you.   
-   - Read the file into R.  
-   - What does R read it in as ?  
-      How do you see the first few or last few rows of the dataset ?  
-      How many rows and columns are there inside this file ?   
-      What are the column headers ?   
-      What are the data types of each column ?   
-   - Can you summarize the whole data (Hint: ?summary) Summarize the number of males and females in this dataset  
-   -  The column called `GROUP` contains the source of the sample. Can you subset the data.frame to get all samples belonging to `BRAIN` and `DIGESTIVE`
+- Read the file into R.  
+- What does R read it in as ?  
+- How do you see the first few or last few rows of the dataset ?  
+- How many rows and columns are there inside this file ?   
+- What are the column headers ?   
+- What are the data types of each column ?   
+- Can you summarize the whole data (Hint: ?summary) Summarize the number of males and females in this dataset.
+- The column called `GROUP` contains the source of the sample. Can you subset the data.frame to get all samples belonging to `BRAIN` and `DIGESTIVE`
 
 __Exercise 3 : Getting Comfortable with `GenomicRanges`__   
 Using the given GRanges , do the following   
