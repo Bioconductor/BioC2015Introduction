@@ -83,12 +83,12 @@ A typical workflow consists of the following steps.
 
 ## Where does Bioconductor fit in 
 
-### I. Infrastructure
+### Infrastructure
 
 One of the biggest strengths of Bioconductor is the classes defined to make 
 simple tasks extremely easy and streamlined. 
 
-#### 1. `GenomicRanges` objects 
+####  GenomicRanges objects 
 
 - Represent **annotations** -- genes, variants, regulatory elements,
   copy number regions, ...
@@ -125,7 +125,7 @@ _GRanges_ Algebra
       `%outside%`; `union()`, `intersect()`, `setdiff()`, `punion()`,
       `pintersect()`, `psetdiff()`
 
-#### 2. SummarizedExperiment 
+####  SummarizedExperiment 
 
 The SummarizedExperiment class is a matrix-like container where
      rows represent ranges of interest (as a 'GRanges or
@@ -134,7 +134,7 @@ The SummarizedExperiment class is a matrix-like container where
 
 ![Alt Ranges Algebra](our_figures/SummarizedExperiment.png)
 
-### II. Reading in Various file formats using R/Bioconductor
+###  Reading in Various file formats using R/Bioconductor
 
 ![Alt Ranges Algebra](our_figures/FilesToPackages.png)
 
@@ -171,9 +171,9 @@ j_overlap <- j[j %over% roi]
 paln[j_overlap$revmap[[1]]]
 ```
 
-### III. Annotations 
+### Annotations 
 
-#### __1. AnnotationHub: Bioconductor Package to Manage & Download files__
+#### __AnnotationHub: Bioconductor Package to Manage & Download files__
  `r Biocpkg("AnnotationHub")` is a web client with which one can browse and   
  download biological files from various databases such as UCSC, NCBI.   
  Using this package allows the user to directly get the file, without needing   
@@ -198,7 +198,7 @@ paln[j_overlap$revmap[[1]]]
  fa
   ```
 
-#### __2. `TxDb` objects__
+#### __TxDb objects__
 
 - Curatated annotation resources -- http://bioconductor.org/packages/biocViews
 - Underlying sqlite database -- `dbfile(txdb)`
@@ -217,7 +217,7 @@ txdb
 methods(class=class(txdb))
 genes(txdb)
 ```
-#### __3.`OrgDb` objects__
+#### __OrgDb objects__
 
 - Curated resources, underlying sqlite data base, like `TxDb`
 - 'select' interface: `keytypes()`, `columns()`, `keys()`, `select()`,
@@ -230,7 +230,7 @@ select(org.Hs.eg.db, c("BRCA1", "PTEN"), c("ENTREZID", "GENENAME"), "SYMBOL")
 keytypes(org.Hs.eg.db)
 columns(org.Hs.eg.db)
 ```
-#### __4. Other internet resources__
+#### __ Other internet resources__
 
 - [biomaRt](http://biomart.org)                       Ensembl and other annotations
 - [PSICQUIC](https://code.google.com/p/psicquic)      Protein interactions
@@ -242,7 +242,7 @@ columns(org.Hs.eg.db)
 - [ArrayExpress](http://www.ebi.ac.uk/arrayexpress/)  Array and other data
 - ...
 
-### IV. Downstream Statistical Analysis 
+###  Downstream Statistical Analysis 
 
 _Bioconductor_ packages are organized by
 [biocViews](http://bioconductor.org/packages/devel/BiocViews.html#___Software). 
@@ -279,14 +279,3 @@ and other terms, and representative packages, include:
 ```{r sessionInfo}
 sessionInfo()
 ```
-
-
-
-
-
-
-
-
-
-
-  
