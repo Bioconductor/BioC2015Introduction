@@ -167,6 +167,9 @@ coverage(gr)
 ```
 
 __Answer4__
+![summarizedExperiment exercise](our_figures/summarizedExperiment_exercise.png)
+
+
 ```{r se-ans}
 library(SummarizedExperiment)
 
