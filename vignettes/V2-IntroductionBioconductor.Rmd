@@ -27,15 +27,15 @@ version 3.2
 
 ```{r echo=FALSE, message=FALSE}
 suppressPackageStartupMessages({
-library(GenomicRanges)
-library(GenomicAlignments)
-library('RNAseqData.HNRNPC.bam.chr14')
-library(AnnotationHub)
-library("TxDb.Hsapiens.UCSC.hg19.knownGene")
-library(org.Hs.eg.db)
+    library(GenomicRanges)
+    library(GenomicAlignments)
+    library('RNAseqData.HNRNPC.bam.chr14')
+    library(AnnotationHub)
+    library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+    library(org.Hs.eg.db)
 })
- ah = AnnotationHub()
- fa <- ah2[["AH18522"]]
+ah = AnnotationHub()
+fa <- ah[["AH18522"]]
 ```
 
 ## What is Bioconductor 
